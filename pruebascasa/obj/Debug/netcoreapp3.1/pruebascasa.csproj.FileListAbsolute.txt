@@ -1,0 +1,14 @@
+C:\Users\jpove\source\repos\pruebascasa\bin\Debug\netcoreapp3.1\pruebascasa.exe
+C:\Users\jpove\source\repos\pruebascasa\bin\Debug\netcoreapp3.1\pruebascasa.deps.json
+C:\Users\jpove\source\repos\pruebascasa\bin\Debug\netcoreapp3.1\pruebascasa.runtimeconfig.json
+C:\Users\jpove\source\repos\pruebascasa\bin\Debug\netcoreapp3.1\pruebascasa.runtimeconfig.dev.json
+C:\Users\jpove\source\repos\pruebascasa\bin\Debug\netcoreapp3.1\pruebascasa.dll
+C:\Users\jpove\source\repos\pruebascasa\bin\Debug\netcoreapp3.1\pruebascasa.pdb
+C:\Users\jpove\source\repos\pruebascasa\obj\Debug\netcoreapp3.1\pruebascasa.csproj.AssemblyReference.cache
+C:\Users\jpove\source\repos\pruebascasa\obj\Debug\netcoreapp3.1\pruebascasa.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jpove\source\repos\pruebascasa\obj\Debug\netcoreapp3.1\pruebascasa.AssemblyInfoInputs.cache
+C:\Users\jpove\source\repos\pruebascasa\obj\Debug\netcoreapp3.1\pruebascasa.AssemblyInfo.cs
+C:\Users\jpove\source\repos\pruebascasa\obj\Debug\netcoreapp3.1\pruebascasa.csproj.CoreCompileInputs.cache
+C:\Users\jpove\source\repos\pruebascasa\obj\Debug\netcoreapp3.1\pruebascasa.dll
+C:\Users\jpove\source\repos\pruebascasa\obj\Debug\netcoreapp3.1\pruebascasa.pdb
+C:\Users\jpove\source\repos\pruebascasa\obj\Debug\netcoreapp3.1\pruebascasa.genruntimeconfig.cache

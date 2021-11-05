@@ -1,0 +1,14 @@
+C:\Users\jpove\source\repos\2.5 foreach\bin\Debug\netcoreapp3.1\2.5 foreach.exe
+C:\Users\jpove\source\repos\2.5 foreach\bin\Debug\netcoreapp3.1\2.5 foreach.deps.json
+C:\Users\jpove\source\repos\2.5 foreach\bin\Debug\netcoreapp3.1\2.5 foreach.runtimeconfig.json
+C:\Users\jpove\source\repos\2.5 foreach\bin\Debug\netcoreapp3.1\2.5 foreach.runtimeconfig.dev.json
+C:\Users\jpove\source\repos\2.5 foreach\bin\Debug\netcoreapp3.1\2.5 foreach.dll
+C:\Users\jpove\source\repos\2.5 foreach\bin\Debug\netcoreapp3.1\2.5 foreach.pdb
+C:\Users\jpove\source\repos\2.5 foreach\obj\Debug\netcoreapp3.1\2.5 foreach.csproj.AssemblyReference.cache
+C:\Users\jpove\source\repos\2.5 foreach\obj\Debug\netcoreapp3.1\2.5 foreach.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jpove\source\repos\2.5 foreach\obj\Debug\netcoreapp3.1\2.5 foreach.AssemblyInfoInputs.cache
+C:\Users\jpove\source\repos\2.5 foreach\obj\Debug\netcoreapp3.1\2.5 foreach.AssemblyInfo.cs
+C:\Users\jpove\source\repos\2.5 foreach\obj\Debug\netcoreapp3.1\2.5 foreach.csproj.CoreCompileInputs.cache
+C:\Users\jpove\source\repos\2.5 foreach\obj\Debug\netcoreapp3.1\2.5 foreach.dll
+C:\Users\jpove\source\repos\2.5 foreach\obj\Debug\netcoreapp3.1\2.5 foreach.pdb
+C:\Users\jpove\source\repos\2.5 foreach\obj\Debug\netcoreapp3.1\2.5 foreach.genruntimeconfig.cache
