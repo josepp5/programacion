@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jpove\\Desktop\\curso DAM\\programacion\\Repositorios\\2.5 foreach\\2.5 foreach.csproj",
-      "projectName": "2.5 foreach",
-      "projectPath": "C:\\Users\\jpove\\Desktop\\curso DAM\\programacion\\Repositorios\\2.5 foreach\\2.5 foreach.csproj",
+      "projectUniqueName": "C:\\Users\\jpove\\Desktop\\curso DAM\\programacion\\Repositorios\\proyecto tema 2\\proyecto tema 2.csproj",
+      "projectName": "proyecto tema 2",
+      "projectPath": "C:\\Users\\jpove\\Desktop\\curso DAM\\programacion\\Repositorios\\proyecto tema 2\\proyecto tema 2.csproj",
       "packagesPath": "C:\\Users\\jpove\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jpove\\Desktop\\curso DAM\\programacion\\Repositorios\\2.5 foreach\\obj\\",
+      "outputPath": "C:\\Users\\jpove\\Desktop\\curso DAM\\programacion\\Repositorios\\proyecto tema 2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jpove\\AppData\\Roaming\\NuGet\\NuGet.Config",
