@@ -1,0 +1,41 @@
+﻿<Window x:Class="practica_3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:practica_3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="lbNombre" Content="Nombre: " HorizontalAlignment="Left" Margin="109,88,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbPrimerApellido" Content="Primer apellido: " HorizontalAlignment="Left" Margin="73,119,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbSegundoApellido" Content="Segundo apellido: " HorizontalAlignment="Left" Margin="62,150,0,0" VerticalAlignment="Top" Width="107"/>
+        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Margin="174,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtNombreChanged" MaxLength="32"/>
+        <TextBox x:Name="txtPrimerApellido" HorizontalAlignment="Left" Margin="174,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtApellido1Changed" MaxLength="32"/>
+        <TextBox x:Name="txtSegundoApellido" HorizontalAlignment="Left" Margin="174,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="32"/>
+        <RadioButton x:Name="rbCliente" Content="Cliente" HorizontalAlignment="Left" Margin="174,190,0,0" VerticalAlignment="Top" Checked="rbCliente_IsChecked" GroupName="rbOpciones"/>
+        <RadioButton x:Name="rbDistribuidor" Content="Distribuidor" HorizontalAlignment="Left" Margin="174,217,0,0" VerticalAlignment="Top" Checked="rbDistribuidor_IsChecked" GroupName="rbOpciones"/>
+        <Label x:Name="lbTelefono" Content="Telefono: " HorizontalAlignment="Left" Margin="108,250,0,0" VerticalAlignment="Top" Width="73"/>
+        <TextBox x:Name="txtTelefono" PreviewTextInput="PreviewTextInput" HorizontalAlignment="Left" Margin="174,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" UndoLimit="9" TextChanged="txtTelefonoChanged" MaxLength="9"/>
+        <Label x:Name="lbTelefono2" Content="Telefono alternativo: " HorizontalAlignment="Left" Margin="47,281,0,0" VerticalAlignment="Top" Width="122"/>
+        <TextBox x:Name="txtTelefono2" PreviewTextInput="PreviewTextInput" HorizontalAlignment="Left" Margin="174,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" UndoLimit="9" MaxLength="9"/>
+        <Label x:Name="lbEmail" Content="E-mail: " HorizontalAlignment="Left" Margin="421,84,0,0" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="476,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtEmailChanged" MaxLength="100"/>
+        <Label x:Name="lbDireccion" Content="Dirección: " HorizontalAlignment="Left" Margin="406,115,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Margin="476,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDireccionChanged" MaxLength="100"/>
+        <Label x:Name="lbCodigoPostal" Content="Codigo Postal: " HorizontalAlignment="Left" Margin="382,146,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCodigoPostal" HorizontalAlignment="Left" Margin="476,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtCodigoPostalChanged" MaxLength="5"/>
+        <Label x:Name="lbPoblacion" Content="Población: " HorizontalAlignment="Left" Margin="403,176,0,0" VerticalAlignment="Top" Width="71"/>
+        <TextBox x:Name="txtPoblacion" HorizontalAlignment="Left" Margin="476,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtPoblacionChanged" MaxLength="32"/>
+        <ComboBox x:Name="cbProvincia" HorizontalAlignment="Left" Margin="476,224,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
+            <ComboBoxItem Content="Castellón"/>
+            <ComboBoxItem Content="Valencia"/>
+            <ComboBoxItem Content="Alicante"/>
+        </ComboBox>
+        <Label x:Name="lbProvincia" Content="Provincia: " HorizontalAlignment="Left" Margin="406,220,0,0" VerticalAlignment="Top" Width="71"/>
+        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="499,331,0,0" VerticalAlignment="Top" Width="68"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="590,331,0,0" VerticalAlignment="Top" Width="67" Click="btnCancelar_Click"/>
+        <ProgressBar x:Name="pbProgreso" HorizontalAlignment="Left" Height="13" Margin="62,334,0,0" VerticalAlignment="Top" Width="399" Maximum="9" LargeChange="0"/>
+        <Label x:Name="lbProgreso" Content="" HorizontalAlignment="Left" Margin="202,352,0,0" VerticalAlignment="Top" Width="92"/>
+    </Grid>
+</Window>
