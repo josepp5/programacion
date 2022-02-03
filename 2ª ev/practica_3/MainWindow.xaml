@@ -28,12 +28,12 @@
         <Label x:Name="lbPoblacion" Content="Población: " HorizontalAlignment="Left" Margin="403,176,0,0" VerticalAlignment="Top" Width="71"/>
         <TextBox x:Name="txtPoblacion" HorizontalAlignment="Left" Margin="476,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtPoblacionChanged" MaxLength="32"/>
         <ComboBox x:Name="cbProvincia" HorizontalAlignment="Left" Margin="476,224,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
-            <ComboBoxItem Content="Castellón"/>
-            <ComboBoxItem Content="Valencia"/>
-            <ComboBoxItem Content="Alicante"/>
+            <ComboBoxItem x:Name="cbItemCastellon" Content="Castellón"/>
+            <ComboBoxItem x:Name="cbItemValencia" Content="Valencia"/>
+            <ComboBoxItem x:Name="cbItemAlicante" Content="Alicante"/>
         </ComboBox>
         <Label x:Name="lbProvincia" Content="Provincia: " HorizontalAlignment="Left" Margin="406,220,0,0" VerticalAlignment="Top" Width="71"/>
-        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="499,331,0,0" VerticalAlignment="Top" Width="68"/>
+        <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="499,331,0,0" VerticalAlignment="Top" Width="68" IsEnabled="False" Click="btnAceptar_Click"/>
         <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="590,331,0,0" VerticalAlignment="Top" Width="67" Click="btnCancelar_Click"/>
         <ProgressBar x:Name="pbProgreso" HorizontalAlignment="Left" Height="13" Margin="62,334,0,0" VerticalAlignment="Top" Width="399" Maximum="9" LargeChange="0"/>
         <Label x:Name="lbProgreso" Content="" HorizontalAlignment="Left" Margin="202,352,0,0" VerticalAlignment="Top" Width="92"/>

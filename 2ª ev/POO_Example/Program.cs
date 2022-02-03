@@ -7,6 +7,8 @@ namespace POO_Example
         static void Main(string[] args)
         {
             Coche C1 = new Coche("1234", 2, "Audi");
+
+
         }
     }
 
@@ -133,5 +135,7 @@ namespace POO_Example
             this.edad = edad;
         }
     }
+
+   
 
 }

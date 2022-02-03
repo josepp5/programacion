@@ -42,8 +42,7 @@ namespace practica_3
             if (txtPrimerApellido.Text != "")
             {
                 pbProgreso.Value++;
-            }
-            
+            }           
 
             if (rbCliente.IsChecked == true)
             {
@@ -82,12 +81,19 @@ namespace practica_3
                           
             lbProgreso.Content = pbProgreso.Value + " / 9";
 
+            if (pbProgreso.Value == 9)         
+                btnAceptar.IsEnabled = true;
+
+            if (cbItemValencia.IsSelected || cbItemCastellon.IsSelected || cbItemAlicante.IsSelected)
+            {
+                pbProgreso.Value++;
+                btnAceptar.IsEnabled = true;
+            }     
         }
 
         private void rbCliente_IsChecked(object sender, RoutedEventArgs e)
         {
-            Mostrar();
-            
+            Mostrar();     
         }
 
         private void rbDistribuidor_IsChecked(object sender, RoutedEventArgs e)
@@ -133,6 +139,11 @@ namespace practica_3
         private void txtPoblacionChanged(object sender, TextChangedEventArgs e)
         {
             Mostrar();
+        }
+
+        private void btnAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Formulario completado correctamente!");
         }
 
     }
