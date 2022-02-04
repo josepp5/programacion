@@ -35,34 +35,11 @@ namespace practica_3
         {
             pbProgreso.Value = 0;
 
-            if (txtNombre.Text != "")
-            {
+            if (txtNombre.Text != "")           
                 pbProgreso.Value++;
-            }                                   
+                                           
             if (txtPrimerApellido.Text != "")
-            {
-                pbProgreso.Value++;
-            }           
-
-            if (rbCliente.IsChecked == true)
-            {
-                cbProvincia.IsEnabled = true;
-                cbProvincia.Items.Add("Murcia");
-                cbProvincia.Items.Add("Albacete");
-                cbProvincia.Items.Add("Cuenca");
-                cbProvincia.Items.Add("Teruel");
-                pbProgreso.Value++;
-            }
-               
-            if (rbDistribuidor.IsChecked == true)
-            {
-                cbProvincia.IsEnabled = true;
-                cbProvincia.Items.Remove("Murcia");
-                cbProvincia.Items.Remove("Albacete");
-                cbProvincia.Items.Remove("Cuenca");
-                cbProvincia.Items.Remove("Teruel");
-                pbProgreso.Value++;
-            }
+                pbProgreso.Value++;       
                
             if (txtTelefono.Text != "")
                 pbProgreso.Value++;
@@ -78,27 +55,51 @@ namespace practica_3
 
             if (txtPoblacion.Text != "")
                 pbProgreso.Value++;
-                          
-            lbProgreso.Content = pbProgreso.Value + " / 9";
 
-            if (pbProgreso.Value == 9)         
-                btnAceptar.IsEnabled = true;
-
-            if (cbItemValencia.IsSelected || cbItemCastellon.IsSelected || cbItemAlicante.IsSelected)
+            if (rbCliente.IsChecked == true || rbDistribuidor.IsChecked == true)
             {
+                pbProgreso.Value++;               
+            }
+            if (cbItemValencia.IsSelected ||
+                    cbItemCastellon.IsSelected ||
+                    cbItemAlicante.IsSelected ||
+                    cbItemAlbacete.IsSelected ||
+                    cbItemCuenca.IsSelected ||
+                    cbItemMurcia.IsSelected ||
+                    cbItemTeruel.IsSelected ||
+                    cbItemValenciaD.IsSelected ||
+                    cbItemAlicanteD.IsSelected ||
+                    cbItemCastellonD.IsSelected)
                 pbProgreso.Value++;
+
+            if (pbProgreso.Value == 9)
                 btnAceptar.IsEnabled = true;
-            }     
+
+            lbProgreso.Content = pbProgreso.Value + " / 9";
+        }
+
+        private void ClearComboBox()
+        {
+            cbProvinciaCliente.SelectedIndex = -1;
+            cbProvinciaDistribuidor.SelectedIndex = -1;
         }
 
         private void rbCliente_IsChecked(object sender, RoutedEventArgs e)
         {
-            Mostrar();     
+            ClearComboBox();
+            Mostrar();
+            cbProvinciaCliente.Visibility = Visibility.Visible;
+            cbProvinciaDistribuidor.Visibility = Visibility.Hidden;
+            cbProvinciaCliente.IsEnabled = true;
         }
 
         private void rbDistribuidor_IsChecked(object sender, RoutedEventArgs e)
         {
+            ClearComboBox();
             Mostrar();
+            cbProvinciaDistribuidor.Visibility = Visibility.Visible;
+            cbProvinciaCliente.Visibility = Visibility.Hidden;
+            cbProvinciaDistribuidor.IsEnabled = true;
         }
 
         private void txtNombreChanged(object sender, TextChangedEventArgs e)
@@ -146,5 +147,13 @@ namespace practica_3
             MessageBox.Show("Formulario completado correctamente!");
         }
 
+        private void cbProvinciaC_IsSelected(object sender, SelectionChangedEventArgs e)
+        {
+            Mostrar();
+        }
+        private void cbProvinciaD_IsSelected(object sender, SelectionChangedEventArgs e)
+        {
+            Mostrar();
+        }
     }
 }

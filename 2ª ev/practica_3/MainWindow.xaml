@@ -27,10 +27,19 @@
         <TextBox x:Name="txtCodigoPostal" HorizontalAlignment="Left" Margin="476,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtCodigoPostalChanged" MaxLength="5"/>
         <Label x:Name="lbPoblacion" Content="Población: " HorizontalAlignment="Left" Margin="403,176,0,0" VerticalAlignment="Top" Width="71"/>
         <TextBox x:Name="txtPoblacion" HorizontalAlignment="Left" Margin="476,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtPoblacionChanged" MaxLength="32"/>
-        <ComboBox x:Name="cbProvincia" HorizontalAlignment="Left" Margin="476,224,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
-            <ComboBoxItem x:Name="cbItemCastellon" Content="Castellón"/>
-            <ComboBoxItem x:Name="cbItemValencia" Content="Valencia"/>
-            <ComboBoxItem x:Name="cbItemAlicante" Content="Alicante"/>
+        <ComboBox x:Name="cbProvinciaCliente" HorizontalAlignment="Left" Margin="476,224,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Visibility="Hidden" SelectionChanged="cbProvinciaC_IsSelected">
+            <ComboBoxItem x:Name="cbItemCastellon" IsSelected="False" Content="Castellón"/>
+            <ComboBoxItem x:Name="cbItemValencia" IsSelected="False" Content="Valencia" />
+            <ComboBoxItem x:Name="cbItemAlicante" IsSelected="False" Content="Alicante" />
+            <ComboBoxItem x:Name="cbItemAlbacete" IsSelected="False" Content="Albacete"/>
+            <ComboBoxItem x:Name="cbItemMurcia" IsSelected="False" Content="Murcia"/>
+            <ComboBoxItem x:Name="cbItemCuenca" IsSelected="False" Content="Cuenca"/>
+            <ComboBoxItem x:Name="cbItemTeruel" IsSelected="False" Content="Teruel"/>
+        </ComboBox>
+        <ComboBox x:Name="cbProvinciaDistribuidor" HorizontalAlignment="Left" Margin="476,224,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Visibility="Hidden" SelectionChanged="cbProvinciaD_IsSelected">
+            <ComboBoxItem x:Name="cbItemCastellonD" IsSelected="False" Content="Castellón"/>
+            <ComboBoxItem x:Name="cbItemValenciaD" IsSelected="False" Content="Valencia" />
+            <ComboBoxItem x:Name="cbItemAlicanteD" IsSelected="False" Content="Alicante" />
         </ComboBox>
         <Label x:Name="lbProvincia" Content="Provincia: " HorizontalAlignment="Left" Margin="406,220,0,0" VerticalAlignment="Top" Width="71"/>
         <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="499,331,0,0" VerticalAlignment="Top" Width="68" IsEnabled="False" Click="btnAceptar_Click"/>
