@@ -60,20 +60,13 @@ namespace practica_3
             {
                 pbProgreso.Value++;               
             }
-            if (cbItemValencia.IsSelected ||
-                    cbItemCastellon.IsSelected ||
-                    cbItemAlicante.IsSelected ||
-                    cbItemAlbacete.IsSelected ||
-                    cbItemCuenca.IsSelected ||
-                    cbItemMurcia.IsSelected ||
-                    cbItemTeruel.IsSelected ||
-                    cbItemValenciaD.IsSelected ||
-                    cbItemAlicanteD.IsSelected ||
-                    cbItemCastellonD.IsSelected)
+            if (cbProvinciaDistribuidor.SelectedIndex != -1 || cbProvinciaCliente.SelectedIndex != -1)
                 pbProgreso.Value++;
 
             if (pbProgreso.Value == 9)
                 btnAceptar.IsEnabled = true;
+            else
+                btnAceptar.IsEnabled = false;
 
             lbProgreso.Content = pbProgreso.Value + " / 9";
         }
