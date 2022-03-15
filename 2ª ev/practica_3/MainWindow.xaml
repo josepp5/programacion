@@ -19,32 +19,25 @@
         <TextBox x:Name="txtTelefono" PreviewTextInput="PreviewTextInput" HorizontalAlignment="Left" Margin="174,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" UndoLimit="9" TextChanged="txtTelefonoChanged" MaxLength="9"/>
         <Label x:Name="lbTelefono2" Content="Telefono alternativo: " HorizontalAlignment="Left" Margin="47,281,0,0" VerticalAlignment="Top" Width="122"/>
         <TextBox x:Name="txtTelefono2" PreviewTextInput="PreviewTextInput" HorizontalAlignment="Left" Margin="174,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" UndoLimit="9" MaxLength="9"/>
-        <Label x:Name="lbEmail" Content="E-mail: " HorizontalAlignment="Left" Margin="421,84,0,0" VerticalAlignment="Top" Width="50"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="476,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtEmailChanged" MaxLength="100"/>
-        <Label x:Name="lbDireccion" Content="Dirección: " HorizontalAlignment="Left" Margin="406,115,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Margin="476,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDireccionChanged" MaxLength="100"/>
-        <Label x:Name="lbCodigoPostal" Content="Codigo Postal: " HorizontalAlignment="Left" Margin="382,146,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCodigoPostal" HorizontalAlignment="Left" Margin="476,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtCodigoPostalChanged" MaxLength="5"/>
-        <Label x:Name="lbPoblacion" Content="Población: " HorizontalAlignment="Left" Margin="403,176,0,0" VerticalAlignment="Top" Width="71"/>
-        <TextBox x:Name="txtPoblacion" HorizontalAlignment="Left" Margin="476,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtPoblacionChanged" MaxLength="32"/>
-        <ComboBox x:Name="cbProvinciaCliente" HorizontalAlignment="Left" Margin="476,224,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Visibility="Hidden" SelectionChanged="cbProvinciaC_IsSelected">
+        <Label x:Name="lbEmail" Content="E-mail: " HorizontalAlignment="Left" Margin="455,86,0,0" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="510,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtEmailChanged" MaxLength="100"/>
+        <Label x:Name="lbDireccion" Content="Dirección: " HorizontalAlignment="Left" Margin="440,117,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Margin="510,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtDireccionChanged" MaxLength="100"/>
+        <Label x:Name="lbCodigoPostal" Content="Codigo Postal: " HorizontalAlignment="Left" Margin="416,148,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCodigoPostal" HorizontalAlignment="Left" Margin="510,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtCodigoPostalChanged" MaxLength="5" PreviewTextInput="PreviewTextInput"/>
+        <Label x:Name="lbPoblacion" Content="Población: " HorizontalAlignment="Left" Margin="437,178,0,0" VerticalAlignment="Top" Width="71"/>
+        <TextBox x:Name="txtPoblacion" HorizontalAlignment="Left" Margin="510,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtPoblacionChanged" MaxLength="32"/>
+        <ComboBox x:Name="cbProvincia" HorizontalAlignment="Left" Margin="511,226,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbProvincia_IsSelected" IsEnabled="False">
             <ComboBoxItem x:Name="cbItemCastellon" IsSelected="False" Content="Castellón"/>
             <ComboBoxItem x:Name="cbItemValencia" IsSelected="False" Content="Valencia" />
-            <ComboBoxItem x:Name="cbItemAlicante" IsSelected="False" Content="Alicante" />
-            <ComboBoxItem x:Name="cbItemAlbacete" IsSelected="False" Content="Albacete"/>
-            <ComboBoxItem x:Name="cbItemMurcia" IsSelected="False" Content="Murcia"/>
-            <ComboBoxItem x:Name="cbItemCuenca" IsSelected="False" Content="Cuenca"/>
-            <ComboBoxItem x:Name="cbItemTeruel" IsSelected="False" Content="Teruel"/>
+            <ComboBoxItem x:Name="cbItemAlbacete" IsSelected="False" Content="Alicante" />
         </ComboBox>
-        <ComboBox x:Name="cbProvinciaDistribuidor" HorizontalAlignment="Left" Margin="476,224,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" Visibility="Hidden" SelectionChanged="cbProvinciaD_IsSelected">
-            <ComboBoxItem x:Name="cbItemCastellonD" IsSelected="False" Content="Castellón"/>
-            <ComboBoxItem x:Name="cbItemValenciaD" IsSelected="False" Content="Valencia" />
-            <ComboBoxItem x:Name="cbItemAlicanteD" IsSelected="False" Content="Alicante" />
-        </ComboBox>
-        <Label x:Name="lbProvincia" Content="Provincia: " HorizontalAlignment="Left" Margin="406,220,0,0" VerticalAlignment="Top" Width="71"/>
+        <Label x:Name="lbProvincia" Content="Provincia: " HorizontalAlignment="Left" Margin="440,222,0,0" VerticalAlignment="Top" Width="71"/>
         <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Left" Margin="499,331,0,0" VerticalAlignment="Top" Width="68" IsEnabled="False" Click="btnAceptar_Click"/>
         <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Left" Margin="590,331,0,0" VerticalAlignment="Top" Width="67" Click="btnCancelar_Click"/>
         <ProgressBar x:Name="pbProgreso" HorizontalAlignment="Left" Height="13" Margin="62,334,0,0" VerticalAlignment="Top" Width="399" Maximum="9" LargeChange="0"/>
         <Label x:Name="lbProgreso" Content="" HorizontalAlignment="Left" Margin="202,352,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="(opcional)" HorizontalAlignment="Left" Margin="294,148,0,0" VerticalAlignment="Top"/>
+        <Label Content="(opcional)" HorizontalAlignment="Left" Margin="299,281,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

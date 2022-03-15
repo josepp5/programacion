@@ -1,0 +1,99 @@
+﻿<Window x:Class="practica4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:practica4"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="principal">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="401*"/>
+            <ColumnDefinition Width="399*"/>
+        </Grid.ColumnDefinitions>
+        <Menu Margin="0,20,0,386" Grid.ColumnSpan="2">
+            <MenuItem x:Name="MenuBanco" Header="Banco" Checked="MenuChecked"/>
+            <MenuItem x:Name="MenuFormulario" Header="Formulario" Checked="MenuChecked"/>
+        </Menu>
+        <Grid Background="#FFE5E5E5" x:Name="GridInfo" Height="407" Margin="-1,20,1,20" Visibility="Visible" Grid.ColumnSpan="2">
+            <TabControl Margin="92,126,54,75">
+                <TabItem Header="Sucursales">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="31*"/>
+                            <ColumnDefinition Width="67*"/>
+                            <ColumnDefinition Width="516*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListBox x:Name="ListSucursal" Margin="34,65,322,29" Grid.ColumnSpan="3"/>
+                        <ListBox Grid.Column="2" Margin="302,65,23,29"/>
+                        <Label Content="Todas las Sucursales" Grid.Column="1" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Width="122" Grid.ColumnSpan="2"/>
+                        <Label Content="Cuentas en la sucursal seleccionada" Grid.Column="2" HorizontalAlignment="Left" Margin="302,18,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Codigo Postal  |  Ciudad   |  Ubicacion  |  Codigo Sucursal" Grid.Column="1" HorizontalAlignment="Left" Margin="7,39,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="318"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Cuentas">
+                    <Grid Background="#FFE5E5E5">
+                        <ListBox x:Name="ListCuentas" Margin="62,30,28,29"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Clientes">
+                    <Grid Background="#FFE5E5E5">
+                        <ListBox x:Name="ListClientes" Margin="70,39,20,20">
+                            <ListBoxItem Content="     Nombre     |      Primer Apellido    |      DNI       |      Cuenta    |   Sucursal    "/>
+                        </ListBox>
+                        <Label Content="Todos los Clientes" HorizontalAlignment="Left" Margin="70,8,0,0" VerticalAlignment="Top" Width="132"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Grid Background="#FFE5E5E5" x:Name="GridFormularios" Width="797" Height="351" Visibility="Visible" Grid.ColumnSpan="2" Margin="2,48,2,48">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="778*"/>
+            </Grid.ColumnDefinitions>
+            <TabControl Margin="151,85,90,41" Grid.Column="1">
+                <TabItem Header="Sucursal">
+                    <Grid Background="#FFE5E5E5" Height="209">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="77*"/>
+                            <ColumnDefinition Width="522*"/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="cbCiudad_sucursal" HorizontalAlignment="Left" Margin="328,54,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" SelectionChanged="cbCiudad_SlectionChanged">
+                            <ComboBoxItem x:Name="cbItemAlicante" Content="Alicante"/>
+                            <ComboBoxItem x:Name="cbItemCastellon" Content="Castellon"/>
+                            <ComboBoxItem x:Name="cbItemValencia" Content="Valencia"/>
+                            <ComboBoxItem x:Name="cbItemMurcia" Content="Murcia"/>
+                        </ComboBox>
+                        <Label Content="Codigo de sucursal :" HorizontalAlignment="Left" Margin="29,50,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <Label Content="Ciudad :" HorizontalAlignment="Left" Margin="261,50,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <TextBox x:Name="txtCodigoPostal" PreviewTextInput="PreviewTextInput" HorizontalAlignment="Left" Margin="74,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" TextChanged="txtCodigoPostal_TextChanged"/>
+                        <Label Content="Codigo Postal :"  HorizontalAlignment="Left" Margin="57,150,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <Label Content="Ubicacion :" Grid.Column="1" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtUbicacion" Grid.Column="1" HorizontalAlignment="Left" Margin="74,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtUbicacion_TextChanged"/>
+                        <Button x:Name="btn_Aceptar_Sucursal" Content="Aceptar" Grid.Column="1" HorizontalAlignment="Left" Margin="343,152,0,0" VerticalAlignment="Top" Click="btn_Aceptar_Sucursal_Click"/>
+                        <Label x:Name="lbCodigoSucursal" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="74,50,0,0" VerticalAlignment="Top" Width="100"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Cliente">
+                    <Grid x:Name="GridCliente" Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="21*"/>
+                            <ColumnDefinition Width="578*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="txtNombre_Cliente" HorizontalAlignment="Left" Margin="114,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" TextChanged="txtNombre_ClienteTextChanged"/>
+                        <Label Content="Nombre :" HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <TextBox x:Name="txtPrimerApellido_Cliente" HorizontalAlignment="Left" Margin="114,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" TextChanged="txtPrimerApellido_ClienteTextChanged"/>
+                        <Label Content="Primer apellido :" HorizontalAlignment="Left" Margin="14,93,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <TextBox x:Name="txtDni_Cliente" PreviewTextInput="PreviewTextInput" HorizontalAlignment="Left" Margin="114,135,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" TextChanged="txtDni_ClienteTextChanged"/>
+                        <Label Content="DNI :" HorizontalAlignment="Left" Margin="73,131,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Label Content="Cuenta generada :" HorizontalAlignment="Left" Margin="374,28,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Button x:Name="btnAceptar_Cliente" Content="Aceptar" Grid.Column="1" HorizontalAlignment="Left" Margin="405,163,0,0" VerticalAlignment="Top" Click="btnAceptar_Cliente_Click"/>
+                        <Label x:Name="lbCuenta" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="359,65,0,0" VerticalAlignment="Top" Width="145" Background="#FFDAFAE6"/>
+                        <ComboBox x:Name="cbSucursal" Grid.Column="1" HorizontalAlignment="Left" Margin="114,167,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbSucursal_SelectionChanged"/>
+                        <Label Content="Sucursal :" Grid.Column="1" HorizontalAlignment="Left" Margin="50,163,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>

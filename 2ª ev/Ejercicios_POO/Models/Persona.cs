@@ -6,11 +6,16 @@ namespace Ejercicios_POO
 {
     class Persona
     {
-        string nombre;
-
+        public string nombre;
+       
         public void SetNombre(string nombre)
         {
             this.nombre = nombre;
+        }
+
+        public string GetNombre()
+        {
+            return nombre;
         }
 
         public void Saludar()

@@ -4,18 +4,31 @@ using System.Text;
 
 namespace Ejercicios_POO.Models
 {
-    class Libro
+    class Libro : Documento
     {
-        public string autor;
-        public string titulo;
-        public string ubicacion;
+        protected string autor;
+        protected string titulo;
+        protected string ubicacion;
 
-
-        public void Mostrar()
+        public Libro(string autor, string titulo, string ubicacion)
         {
-            Console.WriteLine(this.autor);
-            Console.WriteLine(this.titulo);
-            Console.WriteLine(this.ubicacion);
+            this.SetAutor(autor);
+            this.SetTitulo(titulo);
+            this.SetUbicacion(ubicacion);
+        }
+
+        public Libro()
+        {
+            this.SetAutor(autor);
+            this.SetTitulo(titulo);
+            this.SetUbicacion("No detallada");
+        }
+
+        public void MostrarLibro()
+        {
+            Console.WriteLine("Autor - " + this.autor);
+            Console.WriteLine("Titulo - " + this.titulo);
+            Console.WriteLine("Ubicacion - " + this.ubicacion);
         }
         public string GetAutor()
         {
