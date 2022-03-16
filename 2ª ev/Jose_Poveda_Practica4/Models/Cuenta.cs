@@ -28,7 +28,7 @@ namespace Jose_Poveda_Practica4.Models
             return dinero;
         }
         public int Retirar(int cantidad)
-        {
+        {         
             dinero -= cantidad;
             return dinero;
         }

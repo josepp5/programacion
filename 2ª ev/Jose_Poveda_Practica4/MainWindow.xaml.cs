@@ -35,7 +35,7 @@ namespace Jose_Poveda_Practica4
         public static int num;
 
         public static Cuenta[] cuentas = new Cuenta[80];
-        public static int id;
+        public static int contadorCuenta;
    
 
         public void ClearTextBox()
@@ -71,11 +71,11 @@ namespace Jose_Poveda_Practica4
             if (boton == btnAceptar_Cliente)
             {
                 personas[contadorPersonas] = new Persona(txtNombre_Cliente.Text, Convert.ToInt32(txtDni_Cliente.Text), txtPrimerApellido_Cliente.Text, Convert.ToInt32(lbCuenta.Content), Convert.ToInt32(cbSucursal.SelectedItem));
-                cuentas[id] = new Cuenta(1000, Convert.ToInt32(lbCuenta.Content) , sucursal[cbSucursal.SelectedIndex].codigo_sucursal);
+                cuentas[contadorCuenta] = new Cuenta(1000, Convert.ToInt32(lbCuenta.Content) , sucursal[cbSucursal.SelectedIndex].codigo_sucursal);
                 ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
                 ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
                 contadorPersonas++;
-                id++;
+                contadorCuenta++;
                 lbCuenta.Content = txtNombre_Cliente.Text = txtPrimerApellido_Cliente.Text = txtDni_Cliente.Text = cbSucursal.Text = "";
             }        
         }
@@ -202,37 +202,42 @@ namespace Jose_Poveda_Practica4
         }
 
         private void CrearDefault_Click(object sender, RoutedEventArgs e)
-        {  /*
+        {  
             sucursal[num] = new Sucursal(2040, "Alicante", "03600", "Jumilla");
             ListSucursal.Items.Add(sucursal[num].MostrarSucursal());
             cbSucursal.Items.Add(sucursal[num].codigo_sucursal);
-
-
-           
-            sucursal[50] = new Sucursal(6020, "Castellon", "03560", "Monforte");
+            num++;
+            sucursal[num] = new Sucursal(6020, "Castellon", "03560", "Monforte");
             ListSucursal.Items.Add(sucursal[num].MostrarSucursal());
             cbSucursal.Items.Add(sucursal[num].codigo_sucursal);
-            
+            num++;
 
-            personas[50] = new Persona("Jose", 46983403, "Martinez", 0001, 2040);
-            ListClientes.Items.Add(personas[num].MostrarCliente());
-            ListCuentas.Items.Add(personas[num].MostrarCuenta());
-            
-            personas[50] = new Persona("Maria", 423983589, "Sanchez", 0022, 6020);
-            ListClientes.Items.Add(personas[num].MostrarCliente());
-            ListCuentas.Items.Add(personas[num].MostrarCuenta());
-           */
+            personas[contadorPersonas] = new Persona("Jose", 46983403, "Martinez", 0001, 2040);
+            ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
+            ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
+            contadorPersonas++;
+
+            personas[contadorPersonas] = new Persona("Maria", 423983589, "Sanchez", 0022, 6020);
+            ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
+            ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
+            contadorPersonas++;
+
+            cuentas[contadorCuenta] = new Cuenta(1250, 0001, 2040);
+            contadorCuenta++;
+            cuentas[contadorCuenta] = new Cuenta(8550, 0022, 6020);
+            contadorCuenta++;
+
         }
 
         private void rbOperacion_Checked(object sender, RoutedEventArgs e)
         {
-            if ((rbDepositar.IsChecked == true) || (rbRetirar.IsChecked == true) && (txtOperacion.Text != ""))
-                btnConfirmar.IsEnabled = true;
+          /*  if ((rbDepositar.IsChecked == true) || (rbRetirar.IsChecked == true) && (txtOperacion.Text != ""))
+               
             else
             {
                 lbSaldo.Content = lbDineroCuenta.Content = "";
-                btnConfirmar.IsEnabled = false;
-            }             
+                
+            }    */         
         }
 
         private void ListClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -256,23 +261,38 @@ namespace Jose_Poveda_Practica4
 
         private void btnConfirmar_Click(object sender, RoutedEventArgs e)
         {
-            if (rbDepositar.IsChecked == true)
+            if (((rbDepositar.IsChecked == true) || (rbRetirar.IsChecked == true)) && (txtOperacion.Text != ""))
             {
-                cuentas[ListClientes.SelectedIndex].Ingresar(Convert.ToInt32(txtOperacion.Text));
-                lbSaldo.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbSaldo.Content));
-                lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                txtOperacion.Text = "";
+                if (rbDepositar.IsChecked == true)
+                {
+                    cuentas[ListClientes.SelectedIndex].Ingresar(Convert.ToInt32(txtOperacion.Text));
+                    lbSaldo.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                    cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbSaldo.Content));
+                    lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                    txtOperacion.Text = "";
+                }
+
+                if (rbRetirar.IsChecked == true)
+                {
+                    int dineroaRetirar = Convert.ToInt32(txtOperacion.Text);
+                    if (dineroaRetirar > cuentas[ListClientes.SelectedIndex].dinero)
+                    {
+                        MessageBox.Show("No Puedes retirar mas dinero del que dispone la cuenta");
+                    }
+                    else
+                    {
+                        cuentas[ListClientes.SelectedIndex].Retirar(Convert.ToInt32(txtOperacion.Text));
+                        lbSaldo.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                        cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbSaldo.Content));
+                        lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                        txtOperacion.Text = "";
+                    }                                      
+                }
+            } else
+            {
+                MessageBox.Show("Rellena los campos necesarios");
             }
-                
-            if (rbRetirar.IsChecked == true)
-            {
-                cuentas[ListClientes.SelectedIndex].Retirar(Convert.ToInt32(txtOperacion.Text));
-                lbSaldo.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbSaldo.Content));
-                lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                txtOperacion.Text = "";
-            }                     
+                       
         }
     }
 }

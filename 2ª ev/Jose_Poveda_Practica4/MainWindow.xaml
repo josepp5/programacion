@@ -48,7 +48,7 @@
                     <Label Content="¿Que operacion quieres realizar?" HorizontalAlignment="Left" Margin="562,126,0,0" VerticalAlignment="Top" Width="191"/>
                     <Label Content="¿Cuanto?" HorizontalAlignment="Left" Margin="562,218,0,0" VerticalAlignment="Top" Width="104"/>
                     <TextBox x:Name="txtOperacion" HorizontalAlignment="Left" Margin="571,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
-                    <Button x:Name="btnConfirmar" Content="Confirmar" HorizontalAlignment="Left" Margin="743,248,0,0" VerticalAlignment="Top" Width="106" Click="btnConfirmar_Click" IsEnabled="False"/>
+                    <Button x:Name="btnConfirmar" Content="Confirmar" HorizontalAlignment="Left" Margin="743,248,0,0" VerticalAlignment="Top" Width="106" Click="btnConfirmar_Click"/>
                     <Label Content="Saldo despues de la operacion : " HorizontalAlignment="Left" Margin="562,299,0,0" VerticalAlignment="Top" Width="178"/>
                     <Label x:Name="lbDineroCuenta" Content="" HorizontalAlignment="Left" Margin="696,83,0,0" VerticalAlignment="Top" Width="117"/>
                     <Label x:Name="lbSaldo" Content="" HorizontalAlignment="Left" Margin="758,299,0,0" VerticalAlignment="Top" Width="91"/>
@@ -100,6 +100,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button x:Name="crearDefault" Content="Button" HorizontalAlignment="Left" Margin="748,60,0,0" VerticalAlignment="Top" Click="CrearDefault_Click"/>
+        <Button x:Name="crearDefault" Content="Crear Sucursal y Clientes Default" HorizontalAlignment="Left" Margin="727,35,0,0" VerticalAlignment="Top" Click="CrearDefault_Click" Height="40" Width="199"/>
     </Grid>
 </Window>
