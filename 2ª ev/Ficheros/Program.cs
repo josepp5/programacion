@@ -5,7 +5,7 @@ namespace Ficheros
 {
     class Program
     {
-        public const string ruta = "C:\\Users\\jpove\\Desktop\\curso DAM\\programacion\\Repositorios\\2ª ev\\Ficheros\\File\\";
+        public const string ruta = "..\\..\\..\\File\\";
         static void Main(string[] args)
         {
             /*   
@@ -84,11 +84,7 @@ namespace Ficheros
             ficheroReader.Close();
         */
             
-           
-
-            
-
-
         
+
     }
 }
