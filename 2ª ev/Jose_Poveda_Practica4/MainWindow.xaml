@@ -8,7 +8,8 @@
         Title="MainWindow" Height="598" Width="1005">
     <Grid Margin="0,0,0,-6">
         <Menu x:Name="Menu" Margin="0,0,0,528" HorizontalAlignment="Left" Width="360" >
-            <MenuItem x:Name="MenuItemBanco" Header="                  Banco" Height="62" Width="167" Click="MenuClick"/>
+            <MenuItem x:Name="MenuItemBanco" Header="                  Banco" Height="61" Width="167" Click="MenuClick">
+            </MenuItem>
             <MenuItem x:Name="MenuItemFormularios" Header="                Formularios" Height="61" Width="190" Click="MenuClick"/>
         </Menu>
 
@@ -38,12 +39,12 @@
                 <Grid Background="#FFE5E5E5">
                     <ListBox x:Name="ListClientes" Margin="70,54,374,123" SelectionChanged="ListClientes_SelectionChanged"/>
                     <Label Content="Todos los Clientes" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Top" Width="132"/>
-                    <Label x:Name="lbIban" Content="" HorizontalAlignment="Left" Margin="243,330,0,0" VerticalAlignment="Top" Height="29" Width="350"/>
+                    <Label x:Name="lbIban" Content="" HorizontalAlignment="Left" Margin="243,330,0,0" VerticalAlignment="Top" Height="29" Width="284"/>
                     <Button x:Name="btnIban" Content="Generar Iban Cliente" HorizontalAlignment="Left" Margin="70,333,0,0" VerticalAlignment="Top" Width="147" Click="GenerarIbanClicK"/>
                     <Label Content="     Nombre     |      Primer Apellido    |      DNI       |      Cuenta    |   Sucursal    " HorizontalAlignment="Left" Margin="70,28,0,0" VerticalAlignment="Top" Width="457"/>
                     <Label Content="Dinero en la cuenta :" HorizontalAlignment="Left" Margin="562,83,0,0" VerticalAlignment="Top"/>
-                    <RadioButton x:Name="rbDepositar" Content="Depositar" HorizontalAlignment="Left" Margin="596,166,0,0" VerticalAlignment="Top" Checked="rbOperacion_Checked" GroupName="rbOperacionGroup"/>
-                    <RadioButton x:Name="rbRetirar" Content="Retirar" HorizontalAlignment="Left" Margin="596,198,0,0" VerticalAlignment="Top" Checked="rbOperacion_Checked" GroupName="rbOperacionGroup"/>
+                    <RadioButton x:Name="rbDepositar" Content="Depositar" HorizontalAlignment="Left" Margin="596,166,0,0" VerticalAlignment="Top" GroupName="rbOperacionGroup" Checked="rbOperacion_Checked"/>
+                    <RadioButton x:Name="rbRetirar" Content="Retirar" HorizontalAlignment="Left" Margin="596,198,0,0" VerticalAlignment="Top" GroupName="rbOperacionGroup" Checked="rbOperacion_Checked"/>
                     <Label Content="¿Que operacion quieres realizar?" HorizontalAlignment="Left" Margin="562,126,0,0" VerticalAlignment="Top" Width="191"/>
                     <Label Content="¿Cuanto?" HorizontalAlignment="Left" Margin="562,218,0,0" VerticalAlignment="Top" Width="104"/>
                     <TextBox x:Name="txtOperacion" HorizontalAlignment="Left" Margin="571,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="PreviewTextInput"/>
