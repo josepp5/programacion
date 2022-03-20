@@ -38,7 +38,7 @@ namespace Jose_Poveda_Practica4
         public static int contadorCuenta;
    
 
-        public void ClearTextBox()
+        private void ClearTextBox()
         {
             txtUbicacion.Text = "";
             txtCodigoPostal.Text = "";
@@ -49,14 +49,21 @@ namespace Jose_Poveda_Practica4
             txtDni_Cliente.Text = "";
             lbCuenta.Content = "";
             cbSucursal.SelectedIndex = -1;
-
+        }
+        private void ClearCodigoSucursal()
+        {
+            lbCodigoSucursal.Content = "";
+        }
+        private void ClearlbCuenta()
+        {
+            lbCuenta.Content = "";
         }
         private new void PreviewTextInput(object sender, TextCompositionEventArgs e)  // Creada una funcion que solo dejara escribir numeros en el textbox
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        public void btn_Aceptar_Click(object sender, RoutedEventArgs e)
+        public void btn_Click(object sender, RoutedEventArgs e)
         {
             Button boton = (Button)sender;
             if (boton == btn_Aceptar_Sucursal)
@@ -77,16 +84,91 @@ namespace Jose_Poveda_Practica4
                 contadorPersonas++;
                 contadorCuenta++;
                 lbCuenta.Content = txtNombre_Cliente.Text = txtPrimerApellido_Cliente.Text = txtDni_Cliente.Text = cbSucursal.Text = "";
-            }        
-        }
-        private void ClearCodigoSucursal()
-        {
-            lbCodigoSucursal.Content = "";
-        }         
-        private void ClearlbCuenta()
-        {
-            lbCuenta.Content = "";
-        }
+            }     
+            
+            if (boton == btnConfirmar)
+            {
+                if (((rbDepositar.IsChecked == true) || (rbRetirar.IsChecked == true)) && (txtOperacion.Text != ""))
+                {
+                    if (rbDepositar.IsChecked == true)
+                    {
+                        cuentas[ListClientes.SelectedIndex].Ingresar(Convert.ToInt32(txtOperacion.Text));
+                        lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                        cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbDineroCuenta.Content));
+                        lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                        txtOperacion.Text = "";
+                    }
+
+                    if (rbRetirar.IsChecked == true)
+                    {
+                        if (Convert.ToInt32(txtOperacion.Text) > cuentas[ListClientes.SelectedIndex].dinero)
+                        {
+                            MessageBox.Show("No Puedes retirar mas dinero del que dispone la cuenta");
+                        }
+                        else
+                        {
+                            cuentas[ListClientes.SelectedIndex].Retirar(Convert.ToInt32(txtOperacion.Text));
+                            lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                            cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbDineroCuenta.Content));
+                            lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                            txtOperacion.Text = "";
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Rellena los campos necesarios");
+                }
+            }
+
+            if (boton == btncrearDefault)
+            {
+                sucursal[num] = new Sucursal(2040, "Alicante", "03600", "Jumilla");
+                ListSucursal.Items.Add(sucursal[num].MostrarSucursal());
+                cbSucursal.Items.Add(sucursal[num].codigo_sucursal);
+                num++;
+                sucursal[num] = new Sucursal(6020, "Castellon", "03560", "Monforte");
+                ListSucursal.Items.Add(sucursal[num].MostrarSucursal());
+                cbSucursal.Items.Add(sucursal[num].codigo_sucursal);
+                num++;
+
+                personas[contadorPersonas] = new Persona("Jose", 46983403, "Martinez", 2201, 2040);
+                ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
+                ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
+                contadorPersonas++;
+
+                personas[contadorPersonas] = new Persona("Maria", 423983589, "Sanchez", 4022, 6020);
+                ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
+                ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
+                contadorPersonas++;
+
+                cuentas[contadorCuenta] = new Cuenta(1250, 2201, 2040);
+                contadorCuenta++;
+                cuentas[contadorCuenta] = new Cuenta(8550, 4022, 6020);
+                contadorCuenta++;
+                btncrearDefault.IsEnabled = false;
+            }
+
+            if (boton == btnIban)
+            {
+                if (ListClientes.SelectedIndex != -1)
+                {
+                    int cuenta = personas[ListClientes.SelectedIndex].cuenta;
+                    for (int i = 0; i < personas.Length; i++)
+                    {
+                        if (personas[i] != null && personas[i].cuenta == cuenta)
+                        {
+                            lbIban.Content = Convert.ToString(personas[i].codigo_sucursal) + " " + Convert.ToString(personas[i].cuenta) + " " + Convert.ToString(personas[i].dni) + " nº IBAN de " + personas[i].nombre;
+                            lbDineroCuenta.Content = cuentas[i].GetDinero();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debes Seleccionar un Cliente para generar su IBAN");
+                }
+            }
+        }    
         public void Generar_Sucursal()
         {
             Random numeroAzar = new Random();
@@ -94,7 +176,7 @@ namespace Jose_Poveda_Practica4
           
             if (txtCodigoPostal.Text != "" && txtUbicacion.Text != "" && cbCiudad_sucursal.SelectedIndex != -1)
             {
-                bool salir = true;
+                bool salir;
                 do
                 {
                     salir = true;
@@ -112,22 +194,14 @@ namespace Jose_Poveda_Practica4
             else
                 ClearCodigoSucursal();
         }
-        private void OpcionesFS(object sender, TextChangedEventArgs e)
-        {
-            Generar_Sucursal();
-        }
-        private void OpcionesFSCombo(object sender, SelectionChangedEventArgs e)
-        {
-            Generar_Sucursal();
-        }
         public void Generar_Cuenta()
         {
             Random numeroAzar = new Random();
             int random = numeroAzar.Next(1000, 9999);
-    
+
             if (txtNombre_Cliente.Text != "" && txtPrimerApellido_Cliente.Text != "" && txtDni_Cliente.Text != "" && cbSucursal.SelectedIndex != -1)
             {
-                bool salir = true;
+                bool salir;
                 do
                 {
                     salir = true;
@@ -140,23 +214,30 @@ namespace Jose_Poveda_Practica4
                         }
                     }
                 } while (salir == false);
-                lbCuenta.Content = Convert.ToString(random);               
+                lbCuenta.Content = Convert.ToString(random);
             }
             else
                 ClearlbCuenta();
         }
-        private void OpcionesFC(object sender, TextChangedEventArgs e)
+        private void OpcionesFCombo(object sender, SelectionChangedEventArgs e)
         {
-            Generar_Cuenta();
-        }
-        private void OpcionesFCCombo(object sender, SelectionChangedEventArgs e)
+            ComboBox comboBox = (ComboBox)sender;
+            if (comboBox == cbCiudad_sucursal)
+                Generar_Sucursal();
+            if (comboBox == cbSucursal)
+                Generar_Cuenta();
+        }     
+        private void OpcionesFormularios(object sender, TextChangedEventArgs e)
         {
-            Generar_Cuenta();
+            TextBox textbox = (TextBox)sender;
+            if (textbox == txtNombre_Cliente || textbox == txtPrimerApellido_Cliente || textbox == txtDni_Cliente)
+                Generar_Cuenta();
+            if (textbox == txtCodigoPostal || textbox == txtUbicacion)
+                Generar_Sucursal();    
         }
         private void MenuClick(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = (MenuItem)sender;
-
             if (menuItem == MenuItemBanco)
             {
                 tbBanco.Visibility = Visibility.Visible;
@@ -167,121 +248,39 @@ namespace Jose_Poveda_Practica4
                 tbFormularios.Visibility = Visibility.Visible;
                 tbBanco.Visibility = Visibility.Hidden; 
             }
-        }
-        private void GenerarIbanClicK(object sender, RoutedEventArgs e)
-        {                      
-            if (ListClientes.SelectedIndex != -1)
+        } 
+        private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = (ListBox)sender;
+            if (listBox == ListSucursal)
             {
-                int cuenta = personas[ListClientes.SelectedIndex].cuenta;
-                for (int i = 0; i < personas.Length; i++)
+                int codigo_sucursal = sucursal[ListSucursal.SelectedIndex].codigo_sucursal;
+                ListCuentasSuc.Items.Clear();
+                for (int i = 0; i < cuentas.Length; i++)
                 {
-                    if (personas[i] != null && personas[i].cuenta == cuenta)
+                    if (cuentas[i] != null && cuentas[i].codigo_sucursal == codigo_sucursal)
                     {
-                        lbIban.Content = Convert.ToString(personas[i].codigo_sucursal) + " " + Convert.ToString(personas[i].cuenta) + " " + Convert.ToString(personas[i].dni) + " nº IBAN de " + personas[i].nombre;
-                        lbDineroCuenta.Content = cuentas[i].GetDinero();
+                        ListCuentasSuc.Items.Add(cuentas[i].MostrarCuentasSuc());
+                        lbCuentasSuc.Content = "Cuentas en la sucursal:  " + codigo_sucursal;
                     }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Debes Seleccionar un Cliente para generar su IBAN");
             }  
-        }  
-        private void ListSucursal_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int codigo_sucursal = sucursal[ListSucursal.SelectedIndex].codigo_sucursal;
-            ListCuentasSuc.Items.Clear();
-            for (int i = 0; i < cuentas.Length; i++)
+            if (listBox == ListClientes)
             {
-                if (cuentas[i] != null && cuentas[i].codigo_sucursal == codigo_sucursal)
-                {               
-                    ListCuentasSuc.Items.Add(cuentas[i].MostrarCuentasSuc());
-                    lbCuentasSuc.Content = "Cuentas en la sucursal:  " + codigo_sucursal;    
-                }
-            }
-        }
-
-        private void CrearDefault_Click(object sender, RoutedEventArgs e)
-        {  
-            sucursal[num] = new Sucursal(2040, "Alicante", "03600", "Jumilla");
-            ListSucursal.Items.Add(sucursal[num].MostrarSucursal());
-            cbSucursal.Items.Add(sucursal[num].codigo_sucursal);
-            num++;
-            sucursal[num] = new Sucursal(6020, "Castellon", "03560", "Monforte");
-            ListSucursal.Items.Add(sucursal[num].MostrarSucursal());
-            cbSucursal.Items.Add(sucursal[num].codigo_sucursal);
-            num++;
-
-            personas[contadorPersonas] = new Persona("Jose", 46983403, "Martinez", 2201, 2040);
-            ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
-            ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
-            contadorPersonas++;
-
-            personas[contadorPersonas] = new Persona("Maria", 423983589, "Sanchez", 4022, 6020);
-            ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
-            ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
-            contadorPersonas++;
-
-            cuentas[contadorCuenta] = new Cuenta(1250, 2201, 2040);
-            contadorCuenta++;
-            cuentas[contadorCuenta] = new Cuenta(8550, 4022, 6020);
-            contadorCuenta++;
-            btncrearDefault.IsEnabled = false;
-        }
-     
-        private void ListClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ListClientes.SelectedIndex != -1)
-            {
-                int dinero = cuentas[ListClientes.SelectedIndex].GetDinero();
-                for (int j = 0; j < cuentas.Length; j++)
+                if (ListClientes.SelectedIndex != -1)
                 {
-                    if (cuentas[j] != null && cuentas[j].GetDinero() == dinero)
+                    int dinero = cuentas[ListClientes.SelectedIndex].GetDinero();
+                    for (int j = 0; j < cuentas.Length; j++)
                     {
-                        lbDineroCuenta.Content = cuentas[j].GetDinero();
+                        if (cuentas[j] != null && cuentas[j].GetDinero() == dinero)
+                        {
+                            lbDineroCuenta.Content = cuentas[j].GetDinero();
+                        }
                     }
                 }
+                else
+                    MessageBox.Show("Debes Seleccionar un Cliente para hacer una operacion");
             }
-            else
-            {
-                MessageBox.Show("Debes Seleccionar un Cliente para hacer una operacion");
-            }
-        }
-
-        private void btnConfirmar_Click(object sender, RoutedEventArgs e)
-        {
-            if (((rbDepositar.IsChecked == true) || (rbRetirar.IsChecked == true)) && (txtOperacion.Text != ""))
-            {
-                if (rbDepositar.IsChecked == true)
-                {
-                    cuentas[ListClientes.SelectedIndex].Ingresar(Convert.ToInt32(txtOperacion.Text));
-                    lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                    cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbDineroCuenta.Content));
-                    lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                    txtOperacion.Text = "";
-                }
-
-                if (rbRetirar.IsChecked == true)
-                {
-                    int dineroaRetirar = Convert.ToInt32(txtOperacion.Text);
-                    if (dineroaRetirar > cuentas[ListClientes.SelectedIndex].dinero)
-                    {
-                        MessageBox.Show("No Puedes retirar mas dinero del que dispone la cuenta");
-                    }
-                    else
-                    {
-                        cuentas[ListClientes.SelectedIndex].Retirar(Convert.ToInt32(txtOperacion.Text));
-                        lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                        cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbDineroCuenta.Content));
-                        lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                        txtOperacion.Text = "";
-                    }                                      
-                }
-            } else
-            {
-                MessageBox.Show("Rellena los campos necesarios");
-            }
-                       
         }
     }
 }
