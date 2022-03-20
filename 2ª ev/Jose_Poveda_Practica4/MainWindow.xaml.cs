@@ -90,7 +90,7 @@ namespace Jose_Poveda_Practica4
         public void Generar_Sucursal()
         {
             Random numeroAzar = new Random();
-            int codigo = numeroAzar.Next(0000, 9999);
+            int codigo = numeroAzar.Next(1000, 9999);
           
             if (txtCodigoPostal.Text != "" && txtUbicacion.Text != "" && cbCiudad_sucursal.SelectedIndex != -1)
             {
@@ -102,7 +102,7 @@ namespace Jose_Poveda_Practica4
                     {
                         if (sucursal[a].GetCodigo_sucursal() == codigo)
                         {
-                            codigo = numeroAzar.Next(0000, 9999);
+                            codigo = numeroAzar.Next(1000, 9999);
                             salir = false;
                         }
                     }
@@ -123,7 +123,7 @@ namespace Jose_Poveda_Practica4
         public void Generar_Cuenta()
         {
             Random numeroAzar = new Random();
-            int random = numeroAzar.Next(0000, 9999);
+            int random = numeroAzar.Next(1000, 9999);
     
             if (txtNombre_Cliente.Text != "" && txtPrimerApellido_Cliente.Text != "" && txtDni_Cliente.Text != "" && cbSucursal.SelectedIndex != -1)
             {
@@ -135,7 +135,7 @@ namespace Jose_Poveda_Practica4
                     {
                         if (personas[a].GetCuenta() == random)
                         {
-                            random = numeroAzar.Next(0000, 9999);
+                            random = numeroAzar.Next(1000, 9999);
                             salir = false;
                         }
                     }
@@ -212,34 +212,23 @@ namespace Jose_Poveda_Practica4
             cbSucursal.Items.Add(sucursal[num].codigo_sucursal);
             num++;
 
-            personas[contadorPersonas] = new Persona("Jose", 46983403, "Martinez", 0001, 2040);
+            personas[contadorPersonas] = new Persona("Jose", 46983403, "Martinez", 2201, 2040);
             ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
             ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
             contadorPersonas++;
 
-            personas[contadorPersonas] = new Persona("Maria", 423983589, "Sanchez", 0022, 6020);
+            personas[contadorPersonas] = new Persona("Maria", 423983589, "Sanchez", 4022, 6020);
             ListClientes.Items.Add(personas[contadorPersonas].MostrarCliente());
             ListCuentas.Items.Add(personas[contadorPersonas].MostrarCuenta());
             contadorPersonas++;
 
-            cuentas[contadorCuenta] = new Cuenta(1250, 0001, 2040);
+            cuentas[contadorCuenta] = new Cuenta(1250, 2201, 2040);
             contadorCuenta++;
-            cuentas[contadorCuenta] = new Cuenta(8550, 0022, 6020);
+            cuentas[contadorCuenta] = new Cuenta(8550, 4022, 6020);
             contadorCuenta++;
-
+            btncrearDefault.IsEnabled = false;
         }
-
-        private void rbOperacion_Checked(object sender, RoutedEventArgs e)
-        {
-          /*  if ((rbDepositar.IsChecked == true) || (rbRetirar.IsChecked == true) && (txtOperacion.Text != ""))
-               
-            else
-            {
-                lbSaldo.Content = lbDineroCuenta.Content = "";
-                
-            }    */         
-        }
-
+     
         private void ListClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ListClientes.SelectedIndex != -1)
@@ -266,8 +255,8 @@ namespace Jose_Poveda_Practica4
                 if (rbDepositar.IsChecked == true)
                 {
                     cuentas[ListClientes.SelectedIndex].Ingresar(Convert.ToInt32(txtOperacion.Text));
-                    lbSaldo.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                    cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbSaldo.Content));
+                    lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                    cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbDineroCuenta.Content));
                     lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
                     txtOperacion.Text = "";
                 }
@@ -282,8 +271,8 @@ namespace Jose_Poveda_Practica4
                     else
                     {
                         cuentas[ListClientes.SelectedIndex].Retirar(Convert.ToInt32(txtOperacion.Text));
-                        lbSaldo.Content = cuentas[ListClientes.SelectedIndex].dinero;
-                        cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbSaldo.Content));
+                        lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
+                        cuentas[ListClientes.SelectedIndex].SetDinero(Convert.ToInt32(lbDineroCuenta.Content));
                         lbDineroCuenta.Content = cuentas[ListClientes.SelectedIndex].dinero;
                         txtOperacion.Text = "";
                     }                                      
