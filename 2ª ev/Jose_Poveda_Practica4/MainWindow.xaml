@@ -18,7 +18,7 @@
             <MenuItem x:Name="MenuItemFormularios" Header="         Formularios" Height="67" Width="198" Click="MenuClick" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Menu>
 
-        <TabControl x:Name="tbBanco" Margin="46,105,0,0" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Width="884" Height="416">
+        <TabControl x:Name="tbBanco" Margin="46,105,0,0" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="884" Height="416">
             <TabItem Header="Sucursales">
                 <Grid Height="425" HorizontalAlignment="Center" VerticalAlignment="Top" Width="877">
                     <Grid.Background>
@@ -44,19 +44,20 @@
                             <GradientStop Color="#FF87FF89" Offset="1"/>
                         </LinearGradientBrush>
                     </Grid.Background>
+
                     <ListBox x:Name="ListCuentas" Margin="45,38,331,127"/>
                     <Label Content="        Nombre       |       Cuenta      |       Codigo Sucursal         " HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Width="296"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Clientes">
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="878" Height="389">
-
                     <Grid.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF81FAF8"/>
                             <GradientStop Color="#FF87FF89" Offset="1"/>
                         </LinearGradientBrush>
                     </Grid.Background>
+                    
                     <ListBox x:Name="ListClientes" Margin="45,54,374,123" SelectionChanged="List_SelectionChanged" Grid.Column="1"/>
                     <Label Content="Todos los Clientes" HorizontalAlignment="Left" Margin="45,0,0,0" VerticalAlignment="Top" Width="164" FontSize="18" Grid.Column="1"/>
                     <Label x:Name="lbIban" Content="" HorizontalAlignment="Left" Margin="49,321,0,0" VerticalAlignment="Top" Height="33" Width="390" FontSize="16"/>
@@ -74,8 +75,7 @@
             </TabItem>
         </TabControl>
 
-
-        <TabControl x:Name="tbFormularios" Margin="46,105,0,0" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="880">
+        <TabControl x:Name="tbFormularios" Margin="46,105,0,0" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Width="880">
             <TabItem Header="Sucursal">
                 <Grid Height="363" HorizontalAlignment="Left" VerticalAlignment="Top" Width="873">
                     <Grid.Background>

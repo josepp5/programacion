@@ -8,15 +8,12 @@ namespace practica4.Models
 {
     public class Persona
     {
-       
         public string nombre;
         public string primerApellido;
         public int dni;
         public int cuenta;
         public int codigo_sucursal;
         
-        
-
         public Persona(string nombre, int dni, string primerApellido, int cuenta, int codigo_sucursal)
         {
             this.nombre = nombre;
@@ -24,18 +21,13 @@ namespace practica4.Models
             this.primerApellido = primerApellido;
             this.cuenta = cuenta;
             this.codigo_sucursal = codigo_sucursal;
-
         }
         public Persona()
         { }
-
-        
-
         public string MostrarCuenta()
         {
             return string.Format("        {0}       |       {1}      |       {2}         ", nombre, cuenta, codigo_sucursal);
         }
-
         public string MostrarCliente()
         {
             return string.Format("        {0}       |       {1}      |       {2}     |      {3}    |       {4}   ", nombre, primerApellido, dni, cuenta, codigo_sucursal);
