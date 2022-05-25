@@ -166,7 +166,7 @@ namespace Jose_Poveda_Practica4
                         }
                     }
                     lbCodigoSucursal.Content = Convert.ToString(codigo);
-                }
+                
                 else
                     Clearlb("sucursal");
             }

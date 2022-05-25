@@ -8,7 +8,7 @@ namespace Ficheros
         public const string ruta = "..\\..\\..\\File\\";
         static void Main(string[] args)
         {
-            /*   
+              
 
             // abrir / crear fichero
             StreamWriter fichero = File.CreateText("prueba.txt");
@@ -21,7 +21,7 @@ namespace Ficheros
             // Cerrar fichero
             fichero.Close();
 
-            */
+            
 
             // StreamReader fichero = File.OpenText("prueba.txt");
 
@@ -51,7 +51,7 @@ namespace Ficheros
            (8.1.1) Crea un programa que vaya leyendo las frases que el usuario teclea y las
            guarde en un fichero de texto llamado "registroDeUsuario.txt".Terminará cuando
            la frase introducida sea "fin"(esa frase no deberá guardarse en el fichero).
-           */
+           
 
             string fichero = ruta + "prueba.txt";
             string texto;
@@ -84,7 +84,6 @@ namespace Ficheros
             ficheroReader.Close();
         */
             
-        
-
+        }
     }
 }

@@ -1,0 +1,21 @@
+{
+   "mensaje":{
+      "remitente":{
+         "nombre":"Javier Miras",
+         "email":"ajmiras@gmail.com"
+      },
+      "destinatario":{
+         "nombre":"Jose Garcia",
+         "email":"jgarcia@garcia.edu"
+      },
+      "asunto":"Practica evaluable n1",
+      "texto":[
+         {
+            "parrafo":"Buenos dias:"
+         },
+         {
+            "...":""
+         }
+      ]
+   }
+}
