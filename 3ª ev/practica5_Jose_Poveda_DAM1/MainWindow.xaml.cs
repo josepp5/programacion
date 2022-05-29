@@ -6,6 +6,13 @@ using System.Windows.Controls;
 
 namespace practica5_Jose_Poveda_DAM1
 {
+    //
+    // Jose Poveda Perez
+    // Curso DAM 1º
+    // Modalidad Presencial
+    // Práctica nº 5
+    //
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -24,8 +31,13 @@ namespace practica5_Jose_Poveda_DAM1
             File.Delete("Valencia.txt");
         }
 
+        /// <summary>
+        /// Crea clientes default
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_default_Click(object sender, RoutedEventArgs e)
-        {          
+        {
             Cliente cliente = new Cliente("Manuel", "Fernandez", "Castellon");
             clientes.Add(cliente);
             castellon.Add(cliente);
@@ -51,6 +63,9 @@ namespace practica5_Jose_Poveda_DAM1
             ActualizarFicheroClientes();
         }
 
+        /// <summary>
+        /// Actualiza los Listbox
+        /// </summary>
         private void ActualizarListBox()
         {
             ActualizarListBoxConClientes(lbClientes, clientes, true);
@@ -59,6 +74,9 @@ namespace practica5_Jose_Poveda_DAM1
             ActualizarListBoxConClientes(lbValencia, valencia, false);
         }
 
+        /// <summary>
+        /// Vacia los TextBox de la pestaña Provincias
+        /// </summary>
         private void ClearFormularioProvincias()
         {
             txtNombrePro.Text = "";
@@ -66,6 +84,9 @@ namespace practica5_Jose_Poveda_DAM1
             cbProvinciaPro.Text = "";
         }
 
+        /// <summary>
+        /// Vacia los TextBox de la pestaña Clientes(Formulario)
+        /// </summary>
         private void ClearFormularioClientes()
         {
             txtNombre.Text = "";
@@ -73,6 +94,11 @@ namespace practica5_Jose_Poveda_DAM1
             cbProvincia.Text = "";
         }
 
+        /// <summary>
+        /// Evento que se ejecuta cuando pulsamos en los botones de Eliminar 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Eliminar_Click(object sender, RoutedEventArgs e)
         {
             if (lbClientes.SelectedItem != null)
@@ -92,6 +118,11 @@ namespace practica5_Jose_Poveda_DAM1
             ActualizarListBox();
         }
 
+        /// <summary>
+        /// Genera los ficheros de las provincias recogiendo los datos de Clientes.txt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGenerarProvinciastxt_Click(object sender, RoutedEventArgs e)
         {
             File.Delete("Alicante.txt");
@@ -131,6 +162,10 @@ namespace practica5_Jose_Poveda_DAM1
             clientestxt.Close();
         }
         
+        /// <summary>
+        /// Añade el cliente que le pasamos por parametro al fichero correspondiente
+        /// </summary>
+        /// <param name="c"> Objeto de Cliente </param>
         private void AnyadirClienteAFicheroProvincia(Cliente c)
         {
             string nombreArchivo = c.GetProvincia() + ".txt";
@@ -139,6 +174,10 @@ namespace practica5_Jose_Poveda_DAM1
             provinciaSW.Close();
         }
 
+        /// <summary>
+        /// Añade el string corto que representa una instancia del struct Cliente al ListBox de la provincia a la que pertenece.
+        /// </summary>
+        /// <param name="c">Objeto cliente</param>
         private void AnyadirClienteAListBoxProvincia(Cliente c)
         {
             string cliente = c.ToString(false);
@@ -156,6 +195,10 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
+        /// <summary>
+        /// Añade el cliente que le pasamos por parametro a su lista de provincia correspondiente
+        /// </summary>
+        /// <param name="c"> Objeto de Cliente </param>
         private void AnyadirClienteAProvincia(Cliente c)
         {
             switch (c.GetProvincia())
@@ -172,6 +215,12 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
+        /// <summary>
+        /// Funcion que no permite que este mas de un ListBoxItem seleccionado y activa y desactiva los Button 
+        /// correspondientes segun sea necesario.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBox lb = (ListBox)sender;
@@ -212,6 +261,11 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
+        /// <summary>
+        /// Evento Click que rellena los TextBox con los datos del cliente que deseamos modificar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         { 
             if (lbClientes.SelectedItem != null)
@@ -251,6 +305,13 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
+        /// <summary>
+        /// Al modificar la provincia no solo se tiene que cambiar en la clase,
+        /// tambien hay que asegurarse de que el listado de provincias tambien se actualice.
+        /// </summary>
+        /// <param name="c"> Objeto de Cliente </param>
+        /// <param name="nuevaProvincia"> string con el valor de la nueva provincia </param>
+        /// <returns> Devuelve el Cliente ya modificado </returns>
         private Cliente ModificarProvincia(Cliente c, string nuevaProvincia)
         {
             Cliente clienteDeProvincia;
@@ -278,13 +339,28 @@ namespace practica5_Jose_Poveda_DAM1
             return c;
         }
 
+        /// <summary>
+        /// Comprueba que el contenido del TextBox no este vacio.
+        /// </summary>
+        /// <param name="s"> string que posee el valor del TextBox </param>
+        /// <returns></returns>
+        public bool isStringValid(string s)
+        {
+            return s != null && s != "";
+        }
+
+        /// <summary>
+        /// Evento que recoge las modificaciones de los TextBox y las guarda en el cliente correspondiente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_AceptarCambios_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
 
             if (btn == btnAceptarModificacion)
             {
-                if (txtNombre.Text != null && txtApellido.Text != null && cbProvincia.Text != null)
+                if (isStringValid(txtNombre.Text) && isStringValid(txtApellido.Text) && isStringValid(cbProvincia.Text))
                 {
                     if (lbClientes.SelectedItem != null)
                     {
@@ -306,7 +382,7 @@ namespace practica5_Jose_Poveda_DAM1
 
             if (btn == btnConfirmar_Pro)
             {
-                if (txtNombrePro.Text != null && txtApellidoPro.Text != null && cbProvinciaPro.Text != null)
+                if (isStringValid(txtNombrePro.Text) && isStringValid(txtApellidoPro.Text) && isStringValid(cbProvinciaPro.Text))
                 {
                     if (lbCastellon.SelectedItem != null)
                     {
@@ -338,6 +414,9 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
+        /// <summary>
+        /// Actualiza el fichero de Clientes.txt con los clientes añadidos, eliminados o modificados.
+        /// </summary>
         private void ActualizarFicheroClientes()
         {
             File.Delete("Clientes.txt");
@@ -349,6 +428,10 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
+        /// <summary>
+        /// Busca el cliente dado un identificador y lo elimina de los listados tanto de cliente como de provincia.
+        /// </summary>
+        /// <param name="identificador"> Atributo que distingue un cliente de otro</param>
         private void EliminarCliente(int identificador)
         {
             Cliente c = clientes.Find(cliente => cliente.GetIdentificador() == identificador);
@@ -375,6 +458,12 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
+        /// <summary>
+        /// Actualiza el ListBox correspondiente indicado por parametro.
+        /// </summary>
+        /// <param name="lb"> Listbox </param>
+        /// <param name="clientes"> Lista de clientes totales o por provincia </param>
+        /// <param name="fullString">A la hora de representar el cliente como string hay dos opciones, una larga y otra más corta</param>
         private void ActualizarListBoxConClientes(ListBox lb, List<Cliente> clientes, bool fullString)
         {
             lb.Items.Clear();
@@ -384,12 +473,18 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
+        /// <summary>
+        /// Crea un cliente nuevo y lo añade en la provincia correspondiente,
+        /// si se crea desde la pestaña provincias no modificara nuestro fichero o lista de clientes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_CrearCliente_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
             if (btn == btnCrear)
             {
-                if (txtNombre.Text != "" && txtApellido.Text != "" && cbProvincia.Text != "")
+                if (isStringValid(txtNombre.Text) && isStringValid(txtApellido.Text) && isStringValid(cbProvincia.Text))
                 {
                     Cliente cliente = new Cliente(txtNombre.Text, txtApellido.Text, cbProvincia.Text);
                     clientes.Add(cliente);
@@ -404,7 +499,7 @@ namespace practica5_Jose_Poveda_DAM1
 
             if (btn == btnCrear1)
             {
-                if (txtNombrePro.Text != "" && txtApellidoPro.Text != "" && cbProvinciaPro.Text != "")
+                if (isStringValid(txtNombrePro.Text) && isStringValid(txtApellidoPro.Text) && isStringValid(cbProvinciaPro.Text))
                 {
                     Cliente clienteP = new Cliente(txtNombrePro.Text, txtApellidoPro.Text, cbProvinciaPro.Text);
 
