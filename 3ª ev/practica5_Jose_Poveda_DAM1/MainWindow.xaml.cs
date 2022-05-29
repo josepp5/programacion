@@ -44,15 +44,7 @@ namespace practica5_Jose_Poveda_DAM1
             alicante.Add(cliente);
 
             ActualizarListBox();
-
-            StreamWriter clientestxt;
-            clientestxt = File.CreateText("Clientes.txt");
-
-            for (int i = 0; i < clientes.Count; i++)
-            {
-                clientestxt.WriteLine(lbClientes.Items[i].ToString());
-            }
-            clientestxt.Close();
+            ActualizarFicheroClientes();
         }
 
         private void ActualizarListBox()
@@ -372,7 +364,6 @@ namespace practica5_Jose_Poveda_DAM1
             File.Delete("Clientes.txt");
             for (int i = 0; i < clientes.Count; i++)
             {
-                lbClientes.Items.Add(clientes[i].ToString(true));
                 StreamWriter txt = File.AppendText("Clientes.txt");
                 txt.WriteLine(clientes[i].ToString(true));
                 txt.Close();
