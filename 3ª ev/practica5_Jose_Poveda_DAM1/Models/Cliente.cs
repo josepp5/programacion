@@ -4,29 +4,35 @@ using System.Text;
 
 namespace practica5_Jose_Poveda_DAM1.Models
 {
-    public class Cliente
+    public struct Cliente
     {
+        int id;
         string nombre;
         string apellido;
         string provincia;
 
         public Cliente(string nombre, string apellido, string provincia)
         {
+            this.id = Cliente.identificador++;
             this.nombre = nombre;
             this.apellido = apellido;
             this.provincia = provincia;
         }
 
-        public string ToString(string tipo)
+        private static int identificador = 0;
+
+        public string ToString(bool conProvincia)
         {
-            if (tipo == "Cliente")
+            if (conProvincia)
             {
                 return nombre + "#" + apellido + "#" + provincia;
-            }else
-                return nombre + " " + apellido + " " + provincia;
+            } else return nombre + " " + apellido;
         }
 
-
+        public int GetIdentificador()
+        {
+            return id;
+        }
         public string GetNombre()
         {
             return nombre;
@@ -51,6 +57,5 @@ namespace practica5_Jose_Poveda_DAM1.Models
         {
             this.provincia = provincia;
         }
-
     }
 }
