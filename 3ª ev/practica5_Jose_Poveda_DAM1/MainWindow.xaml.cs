@@ -286,7 +286,6 @@ namespace practica5_Jose_Poveda_DAM1
                         c.SetNombre(txtNombre.Text);
                         c.SetApellido(txtApellido.Text);
                         c = ModificarProvincia(c, cbProvincia.Text);
-                        //c.SetProvincia(cbProvincia.Text);
                         clientes[lbClientes.SelectedIndex] = c;
 
                         ActualizarListBox();
@@ -303,89 +302,35 @@ namespace practica5_Jose_Poveda_DAM1
             {
                 if (txtNombrePro.Text != null && txtApellidoPro.Text != null && cbProvinciaPro.Text != null)
                 {
-                    Cliente clienteP = new Cliente(txtNombrePro.Text, txtApellidoPro.Text, cbProvinciaPro.Text);
-
                     if (lbCastellon.SelectedItem != null)
                     {
-                        castellon[lbCastellon.SelectedIndex] = clienteP;
-                        if (cbProvinciaPro.Text != "Castellon")
-                        {
-                            if (cbProvinciaPro.Text == "Alicante")
-                            {
-                                alicante.Add(clienteP);
-                                lbAlicante.Items.Add(clienteP.ToString(false));
-                                castellon.RemoveAt(lbCastellon.SelectedIndex);
-                                ActualizarListBoxyTxt("A", " ");
-                                ActualizarListBoxyTxt("C", " ");
-                            }
-                            if (cbProvinciaPro.Text == "Valencia")
-                            {
-                                valencia.Add(clienteP);
-                                lbValencia.Items.Add(clienteP.ToString(false));
-                                castellon.RemoveAt(lbCastellon.SelectedIndex);
-                                ActualizarListBoxyTxt("V", " ");
-                                ActualizarListBoxyTxt("C", " ");
-                            }
-                        }
-                        else
-                            ActualizarListBoxyTxt("C", " ");
+                        Cliente clienteP = castellon[lbCastellon.SelectedIndex];
+                        clienteP.SetNombre(txtNombrePro.Text);
+                        clienteP.SetApellido(txtApellidoPro.Text);
+                        clienteP = ModificarProvincia(clienteP, cbProvinciaPro.Text);
                     }
                     if (lbValencia.SelectedItem != null)
                     {
-                        valencia[lbValencia.SelectedIndex] = clienteP;
-                        if (cbProvinciaPro.Text != "Valencia")
-                        {
-                            if (cbProvinciaPro.Text == "Alicante")
-                            {
-                                alicante.Add(clienteP);
-                                lbAlicante.Items.Add(clienteP.ToString(false));
-                                valencia.RemoveAt(lbValencia.SelectedIndex);
-                                ActualizarListBoxyTxt("A", " ");
-                                ActualizarListBoxyTxt("V", " ");
-                            }
-                            if (cbProvinciaPro.Text == "Castellon")
-                            {
-                                castellon.Add(clienteP);
-                                lbCastellon.Items.Add(clienteP.ToString(false));
-                                valencia.RemoveAt(lbValencia.SelectedIndex);
-                                ActualizarListBoxyTxt("C", " ");
-                                ActualizarListBoxyTxt("V", " ");
-                            }
-                        }
-                        else
-                            ActualizarListBoxyTxt("V", " ");
+                        Cliente clienteP = valencia[lbValencia.SelectedIndex];
+                        clienteP.SetNombre(txtNombrePro.Text);
+                        clienteP.SetApellido(txtApellidoPro.Text);
+                        clienteP = ModificarProvincia(clienteP, cbProvinciaPro.Text);
                     }
                     if (lbAlicante.SelectedItem != null)
                     {
-                        alicante[lbAlicante.SelectedIndex] = clienteP;
-                        if (cbProvinciaPro.Text != "Alicante")
-                        {
-                            if (cbProvinciaPro.Text == "Castellon")
-                            {
-                                castellon.Add(clienteP);
-                                lbCastellon.Items.Add(clienteP.ToString(false));
-                                alicante.RemoveAt(lbAlicante.SelectedIndex);
-                                ActualizarListBoxyTxt("C", " ");
-                                ActualizarListBoxyTxt("A", " ");
-                            }
-                            if (cbProvinciaPro.Text == "Valencia")
-                            {
-                                valencia.Add(clienteP);
-                                lbValencia.Items.Add(clienteP.ToString(false));
-                                alicante.RemoveAt(lbAlicante.SelectedIndex);
-                                ActualizarListBoxyTxt("V", " ");
-                                ActualizarListBoxyTxt("A", " ");
-                            }
-                        }
-                        else
-                            ActualizarListBoxyTxt("A", " ");
+                        Cliente clienteP = alicante[lbAlicante.SelectedIndex];
+                        clienteP.SetNombre(txtNombrePro.Text);
+                        clienteP.SetApellido(txtApellidoPro.Text);
+                        clienteP = ModificarProvincia(clienteP, cbProvinciaPro.Text);
+
                     }
+                    ActualizarListBox();
                     btnConfirmar_Pro.IsEnabled = false;
                     btnCrear1.IsEnabled = true;
                     ClearFormulario(" ");
                 }
-                else MessageBox.Show("Rellena los campos");      
-            }                             
+                else MessageBox.Show("Rellena los campos");
+            }
         }
         
         private void AnyadirClienteAFicheroProvincia(Cliente c)
@@ -449,16 +394,24 @@ namespace practica5_Jose_Poveda_DAM1
         {
             Cliente c = clientes.Find(cliente => cliente.GetIdentificador() == identificador);
             clientes.Remove(c);
-            switch (c.GetProvincia())
+
+            List<Cliente> clientesDeProvincias = new List<Cliente>();
+            clientesDeProvincias.AddRange(alicante);
+            clientesDeProvincias.AddRange(castellon);
+            clientesDeProvincias.AddRange(valencia);
+
+            Cliente clienteDeProvincia = clientesDeProvincias.Find(cliente => cliente.GetIdentificador() == identificador);
+
+            switch (clienteDeProvincia.GetProvincia())
             {
                 case "Alicante":
-                    alicante.Remove(c);
+                    alicante.Remove(clienteDeProvincia);
                     break;
                 case "Castellon":
-                    castellon.Remove(c);
+                    castellon.Remove(clienteDeProvincia);
                     break;
                 case "Valencia":
-                    valencia.Remove(c);
+                    valencia.Remove(clienteDeProvincia);
                     break;
             }
         }
