@@ -53,46 +53,24 @@ namespace practica5_Jose_Poveda_DAM1
 
         private void ActualizarListBox()
         {
-            lbClientes.Items.Clear();
-            lbCastellon.Items.Clear();
-            lbValencia.Items.Clear();
-            lbAlicante.Items.Clear();
-
-            for (int i = 0; i < clientes.Count; i++)
-            {
-                lbClientes.Items.Add(clientes[i].ToString(true));
-            }
-
-            for (int i = 0; i < alicante.Count; i++)
-            {
-                AnyadirClienteAListBoxProvincia(alicante[i]);
-            }
-
-            for (int i = 0; i < castellon.Count; i++)
-            {
-                AnyadirClienteAListBoxProvincia(castellon[i]);
-            }
-
-            for (int i = 0; i < valencia.Count; i++)
-            {
-                AnyadirClienteAListBoxProvincia(valencia[i]);
-            }
+            ActualizarListBoxConClientes(lbClientes, clientes, true);
+            ActualizarListBoxConClientes(lbAlicante, alicante, false);
+            ActualizarListBoxConClientes(lbCastellon, castellon, false);
+            ActualizarListBoxConClientes(lbValencia, valencia, false);
         }
 
-        private void ClearFormulario(string tipo)
+        private void ClearFormularioProvincias()
         {
-            if (tipo == "cliente")
-            {
-                txtNombre.Text = "";
-                txtApellido.Text = "";
-                cbProvincia.Text = "";
-            } else
-            {
-                txtNombrePro.Text = "";
-                txtApellidoPro.Text = "";
-                cbProvinciaPro.Text = "";
-            }
-            
+            txtNombrePro.Text = "";
+            txtApellidoPro.Text = "";
+            cbProvinciaPro.Text = "";
+        }
+
+        private void ClearFormularioClientes()
+        {
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            cbProvincia.Text = "";
         }
 
         private void btn_Eliminar_Click(object sender, RoutedEventArgs e)
@@ -320,7 +298,7 @@ namespace practica5_Jose_Poveda_DAM1
                         ActualizarFicheroClientes();
                     }
 
-                    ClearFormulario("cliente");
+                    ClearFormularioClientes();
                     btnAceptarModificacion.IsEnabled = false;
                     btnCrear.IsEnabled = true;
                 } else MessageBox.Show("Rellena los campos");
@@ -354,7 +332,7 @@ namespace practica5_Jose_Poveda_DAM1
                     ActualizarListBox();
                     btnConfirmar_Pro.IsEnabled = false;
                     btnCrear1.IsEnabled = true;
-                    ClearFormulario(" ");
+                    ClearFormularioProvincias();
                 }
                 else MessageBox.Show("Rellena los campos");
             }
@@ -397,12 +375,12 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
-        private void ActualizarListBoxConClientes(ListBox lb, List<Cliente> clientes)
+        private void ActualizarListBoxConClientes(ListBox lb, List<Cliente> clientes, bool fullString)
         {
             lb.Items.Clear();
             for (int i = 0; i < clientes.Count; i++)
             {
-                lb.Items.Add(clientes[i].ToString(false));
+                lb.Items.Add(clientes[i].ToString(fullString));
             }
         }
 
@@ -414,72 +392,28 @@ namespace practica5_Jose_Poveda_DAM1
                 if (txtNombre.Text != "" && txtApellido.Text != "" && cbProvincia.Text != "")
                 {
                     Cliente cliente = new Cliente(txtNombre.Text, txtApellido.Text, cbProvincia.Text);
-                    Cliente clienteP = new Cliente(txtNombre.Text, txtApellido.Text, cbProvincia.Text);
                     clientes.Add(cliente);
-                    lbClientes.Items.Add(cliente.ToString(true));
 
-                    if (cbProvincia.Text == "Castellon")
-                    {
-                        lbCastellon.Items.Add(clienteP.ToString(false));
-                        castellon.Add(clienteP);
-                    }
-                    else if (cbProvincia.Text == "Valencia")
-                    {
-                        lbValencia.Items.Add(clienteP.ToString(false));
-                        valencia.Add(clienteP);
-                    }
-                    else if (cbProvincia.Text == "Alicante")
-                    {
-                        lbAlicante.Items.Add(clienteP.ToString(false));
-                        alicante.Add(clienteP);
-                    }
-
-                    if (lbClientes.Items.Count != 0)
-                    {
-                        StreamWriter clientestxt;
-                        clientestxt = File.CreateText("Clientes.txt");
-
-                        for (int i = 0; i < clientes.Count; i++)
-                        {
-                            clientestxt.WriteLine(lbClientes.Items[i].ToString());
-                        }
-                        clientestxt.Close();
-                    }
-                    ClearFormulario("cliente");
+                    AnyadirClienteAProvincia(cliente);
+                    ActualizarListBox();
+                    ActualizarFicheroClientes();
+                    ClearFormularioClientes();
                 }
-                else
-                    MessageBox.Show("Rellena los campos");
+                else MessageBox.Show("Rellena los campos");
             }
 
             if (btn == btnCrear1)
             {
                 if (txtNombrePro.Text != "" && txtApellidoPro.Text != "" && cbProvinciaPro.Text != "")
                 {
-                    Cliente clienteP = new Cliente(txtNombrePro.Text, txtApellidoPro.Text, cbProvinciaPro.Text);                   
+                    Cliente clienteP = new Cliente(txtNombrePro.Text, txtApellidoPro.Text, cbProvinciaPro.Text);
 
-                    if (cbProvinciaPro.Text == "Castellon")
-                    {
-                        lbCastellon.Items.Add(clienteP.ToString(false));
-                        castellon.Add(clienteP);
-                    }
-                    else if (cbProvinciaPro.Text == "Valencia")
-                    {
-                        lbValencia.Items.Add(clienteP.ToString(false));
-                        valencia.Add(clienteP);
-                    }
-                    else if (cbProvinciaPro.Text == "Alicante")
-                    {
-                        lbAlicante.Items.Add(clienteP.ToString(false));
-                        alicante.Add(clienteP);
-                    }
-                    //ActualizarListBoxyTxt("C", " ");
-                    //ActualizarListBoxyTxt("A", " ");
-                    //ActualizarListBoxyTxt("V", " ");
-                    ActualizarListBox();
-                    ClearFormulario(" ");
+                    AnyadirClienteAProvincia(clienteP);
+                    AnyadirClienteAListBoxProvincia(clienteP);
+
+                    ClearFormularioProvincias();
                 }
-                else
-                    MessageBox.Show("Rellena los campos");
+                else MessageBox.Show("Rellena los campos");
             }
         }
     }
