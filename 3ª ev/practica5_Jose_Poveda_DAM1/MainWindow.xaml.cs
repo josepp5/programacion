@@ -65,17 +65,17 @@ namespace practica5_Jose_Poveda_DAM1
 
             for (int i = 0; i < alicante.Count; i++)
             {
-                lbAlicante.Items.Add(alicante[i].ToString(false));
+                AnyadirClienteAListBoxProvincia(alicante[i]);
             }
 
             for (int i = 0; i < castellon.Count; i++)
             {
-                lbCastellon.Items.Add(castellon[i].ToString(false));
+                AnyadirClienteAListBoxProvincia(castellon[i]);
             }
 
             for (int i = 0; i < valencia.Count; i++)
             {
-                lbValencia.Items.Add(valencia[i].ToString(false));
+                AnyadirClienteAListBoxProvincia(valencia[i]);
             }
         }
 
@@ -143,14 +143,55 @@ namespace practica5_Jose_Poveda_DAM1
                     AnyadirClienteAFicheroProvincia(c);
 
                     // Actualizar ListBox de provincia
-                    ActualizarListBoxProvincia(c);
+                    AnyadirClienteAListBoxProvincia(c);
 
                     // Actualizar listado de clientes por provincia
-                    ActualizarClientesProvincia(c);
+                    AnyadirClienteAProvincia(c);
                 }
                 linea = clientestxt.ReadLine();
             }
             clientestxt.Close();
+        }
+        
+        private void AnyadirClienteAFicheroProvincia(Cliente c)
+        {
+            string nombreArchivo = c.GetProvincia() + ".txt";
+            StreamWriter provinciaSW = File.AppendText(nombreArchivo);
+            provinciaSW.WriteLine(c.ToString(false));
+            provinciaSW.Close();
+        }
+
+        private void AnyadirClienteAListBoxProvincia(Cliente c)
+        {
+            string cliente = c.ToString(false);
+            switch (c.GetProvincia())
+            {
+                case "Alicante":
+                    lbAlicante.Items.Add(cliente);
+                    break;
+                case "Castellon":
+                    lbCastellon.Items.Add(cliente);
+                    break;
+                case "Valencia":
+                    lbValencia.Items.Add(cliente);
+                    break;
+            }
+        }
+
+        private void AnyadirClienteAProvincia(Cliente c)
+        {
+            switch (c.GetProvincia())
+            {
+                case "Alicante":
+                    alicante.Add(c);
+                    break;
+                case "Castellon":
+                    castellon.Add(c);
+                    break;
+                case "Valencia":
+                    valencia.Add(c);
+                    break;
+            }
         }
 
         private void lb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -254,20 +295,7 @@ namespace practica5_Jose_Poveda_DAM1
             }
             c.SetProvincia(nuevaProvincia);
 
-            switch (nuevaProvincia)
-            {
-                case "Alicante":
-                    alicante.Add(c);
-                    break;
-
-                case "Castellon":
-                    castellon.Add(c);
-                    break;
-
-                case "Valencia":
-                    valencia.Add(c);
-                    break;
-            }
+            AnyadirClienteAProvincia(c);
 
             return c;
         }
@@ -307,22 +335,21 @@ namespace practica5_Jose_Poveda_DAM1
                         Cliente clienteP = castellon[lbCastellon.SelectedIndex];
                         clienteP.SetNombre(txtNombrePro.Text);
                         clienteP.SetApellido(txtApellidoPro.Text);
-                        clienteP = ModificarProvincia(clienteP, cbProvinciaPro.Text);
+                        ModificarProvincia(clienteP, cbProvinciaPro.Text);
                     }
                     if (lbValencia.SelectedItem != null)
                     {
                         Cliente clienteP = valencia[lbValencia.SelectedIndex];
                         clienteP.SetNombre(txtNombrePro.Text);
                         clienteP.SetApellido(txtApellidoPro.Text);
-                        clienteP = ModificarProvincia(clienteP, cbProvinciaPro.Text);
+                        ModificarProvincia(clienteP, cbProvinciaPro.Text);
                     }
                     if (lbAlicante.SelectedItem != null)
                     {
                         Cliente clienteP = alicante[lbAlicante.SelectedIndex];
                         clienteP.SetNombre(txtNombrePro.Text);
                         clienteP.SetApellido(txtApellidoPro.Text);
-                        clienteP = ModificarProvincia(clienteP, cbProvinciaPro.Text);
-
+                        ModificarProvincia(clienteP, cbProvinciaPro.Text);
                     }
                     ActualizarListBox();
                     btnConfirmar_Pro.IsEnabled = false;
@@ -331,14 +358,6 @@ namespace practica5_Jose_Poveda_DAM1
                 }
                 else MessageBox.Show("Rellena los campos");
             }
-        }
-        
-        private void AnyadirClienteAFicheroProvincia(Cliente c)
-        {
-            string nombreArchivo = c.GetProvincia() + ".txt";
-            StreamWriter provinciaSW = File.AppendText(nombreArchivo);
-            provinciaSW.WriteLine(c.ToString(false));
-            provinciaSW.Close();
         }
 
         private void ActualizarFicheroClientes()
@@ -349,44 +368,6 @@ namespace practica5_Jose_Poveda_DAM1
                 StreamWriter txt = File.AppendText("Clientes.txt");
                 txt.WriteLine(clientes[i].ToString(true));
                 txt.Close();
-            }
-        }
-
-        private void EliminarClienteDeProvincia(int index, ListBox lb)
-        {
-            lb.Items.RemoveAt(index);
-        }
-
-        private void ActualizarListBoxProvincia(Cliente c)
-        {
-            string cliente = c.ToString(false);
-            switch (c.GetProvincia())
-            {
-                case "Alicante":
-                    lbAlicante.Items.Add(cliente);
-                    break;
-                case "Castellon":
-                    lbCastellon.Items.Add(cliente);
-                    break;
-                case "Valencia":
-                    lbValencia.Items.Add(cliente);
-                    break;
-            }
-        }
-
-        private void ActualizarClientesProvincia(Cliente c)
-        {
-            switch (c.GetProvincia())
-            {
-                case "Alicante":
-                    alicante.Add(c);
-                    break;
-                case "Castellon":
-                    castellon.Add(c);
-                    break;
-                case "Valencia":
-                    valencia.Add(c);
-                    break;
             }
         }
 
@@ -425,126 +406,6 @@ namespace practica5_Jose_Poveda_DAM1
             }
         }
 
-        private void ActualizarListBoxyTxt(string Lb, string tipo)
-        {
-            if (tipo == "x")
-            {
-                if (Lb == "C")
-                {
-                    ActualizarListBoxConClientes(lbCastellon, castellon);
-                }
-                if (Lb == "V")
-                {
-                    ActualizarListBoxConClientes(lbValencia, valencia);
-                }
-                if (Lb == "A")
-                {
-                    ActualizarListBoxConClientes(lbAlicante, alicante);
-                }
-                if (Lb == "Clientes")
-                {
-                    File.Delete("Clientes.txt");
-                    if (clientes.Count != 0)
-                    {
-                        for (int i = 0; i < clientes.Count; i++)
-                        {
-                            lbClientes.Items.Add(clientes[i].ToString(true));
-                            StreamWriter txt = File.AppendText("Clientes.txt");
-                            txt.WriteLine(clientes[i].ToString(true));
-                            txt.Close();
-                        }
-                    }
-                }
-            } else
-            {
-                if (Lb == "C")
-                {
-                    File.Delete("Castellon.txt");
-                    lbCastellon.Items.Clear();
-                    if (castellon.Count != 0)
-                    {
-                        for (int i = 0; i < castellon.Count; i++)
-                        {
-                            lbCastellon.Items.Add(castellon[i].ToString(false));
-                            StreamWriter txt = File.AppendText("Castellon.txt");
-                            txt.WriteLine(castellon[i].ToString(false));
-                            txt.Close();
-                        }
-                    }
-                }
-                if (Lb == "V")
-                {
-                    File.Delete("Valencia.txt");
-                    lbValencia.Items.Clear();
-                    if (valencia.Count != 0)
-                    {
-                        for (int i = 0; i < valencia.Count; i++)
-                        {
-                            lbValencia.Items.Add(valencia[i].ToString(false));
-                            StreamWriter txt = File.AppendText("Valencia.txt");
-                            txt.WriteLine(valencia[i].ToString(false));
-                            txt.Close();
-                        }
-                    }
-                }
-                if (Lb == "A")
-                {
-                    File.Delete("Alicante.txt");
-                    lbAlicante.Items.Clear();
-                    if (alicante.Count != 0)
-                    {
-                        for (int i = 0; i < alicante.Count; i++)
-                        {
-                            lbAlicante.Items.Add(alicante[i].ToString(false));
-                            StreamWriter txt = File.AppendText("Alicante.txt");
-                            txt.WriteLine(alicante[i].ToString(false));
-                            txt.Close();
-                        }
-                    }
-                }
-                if (Lb == "Clientes")
-                {
-                    File.Delete("Clientes.txt");
-                    lbClientes.Items.Clear();
-                    if (clientes.Count != 0)
-                    {
-                        for (int i = 0; i < clientes.Count; i++)
-                        {
-                            lbClientes.Items.Add(clientes[i].ToString(true));
-                            StreamWriter txt = File.AppendText("Clientes.txt");
-                            txt.WriteLine(clientes[i].ToString(true));
-                            txt.Close();
-                        }
-                        lbValencia.Items.Clear();
-                        lbAlicante.Items.Clear();
-                        lbCastellon.Items.Clear();
-                        if (castellon.Count != 0)
-                        {
-                            for (int i = 0; i < castellon.Count; i++)
-                            {
-                                lbCastellon.Items.Add(castellon[i].ToString(false));
-                            }
-                        }
-                        if (valencia.Count != 0)
-                        {
-                            for (int i = 0; i < valencia.Count; i++)
-                            {
-                                lbValencia.Items.Add(valencia[i].ToString(false));
-                            }
-                        }
-                        if (alicante.Count != 0)
-                        {
-                            for (int i = 0; i < alicante.Count; i++)
-                            {
-                                lbAlicante.Items.Add(alicante[i].ToString(false));
-                            }
-                        }
-                    }
-                }
-            }
-            
-        }
-        
         private void btn_CrearCliente_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
