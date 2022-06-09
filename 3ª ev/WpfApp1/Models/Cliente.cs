@@ -29,9 +29,9 @@ namespace practica5_Jose_Poveda_DAM1.Models
             } else return nombre + " " + apellido;
         }
 
-        public string ToJson()
+        public string ToJSON()
         {
-            return "{\"cliente\":{\"nombre\":\"" + nombre + "\",\"apellido\":\"" + apellido + "\",\"provincia\":\"" + provincia + "\"}}";
+            return "{\"nombre\" : \"" + nombre + "\",\"apellido\" : \"" + apellido + "\",\"provincia\" :\"" + provincia + "\" }";
         }
 
         public int GetIdentificador()

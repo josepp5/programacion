@@ -10,7 +10,7 @@
         <TabControl>
             <TabItem x:Name="tbcFormulario" Header="Clientes">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="443,316,0,0" VerticalAlignment="Top" Click="btn_Eliminar_Click" IsEnabled="False"/>
+                    <Button x:Name="btnEliminar" Content="Eliminar" HorizontalAlignment="Left" Margin="443,316,0,0" VerticalAlignment="Top" IsEnabled="False"/>
                     <TextBox x:Name="txtNombre" MaxLength="32" HorizontalAlignment="Left" Margin="88,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Text=""/>
                     <Label x:Name="lblNombre" Content="Nombre*" HorizontalAlignment="Left" Margin="88,67,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="lblApellido" Content="Apellido*" HorizontalAlignment="Left" Margin="88,152,0,0" VerticalAlignment="Top"/>
@@ -21,36 +21,26 @@
                         <ComboBoxItem Content="Valencia"/>
                     </ComboBox>
                     <Label x:Name="lblProvincia" Content="Provincia*" HorizontalAlignment="Left" Margin="86,247,0,0" VerticalAlignment="Top"/>
-                    <ListBox x:Name="lbClientes" Margin="437,80,79,104" SelectionChanged="lb_SelectionChanged"/>
+                    <ListBox x:Name="lbClientes" Margin="437,80,79,104"/>
                     <Label Content="Clientes" HorizontalAlignment="Left" Margin="437,49,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="btnCrear" Content="Crear cliente" HorizontalAlignment="Left" Margin="228,326,0,0" VerticalAlignment="Top" Click="btn_CrearCliente_Click"/>
-                    <Button x:Name="btnDefault" Content="Crear Defaults" HorizontalAlignment="Left" Margin="792,49,0,0" VerticalAlignment="Top" Click="btn_default_Click" Width="91"/>
-                    <Button x:Name="btnAceptarModificacion" Content="Confirmar Cambios" HorizontalAlignment="Left" Margin="88,326,0,0" VerticalAlignment="Top" Click="btn_AceptarCambios_Click" IsEnabled="False"/>
-                    <Button x:Name="btnModificar_Cliente" Content="Modificar" HorizontalAlignment="Left" Margin="522,316,0,0" VerticalAlignment="Top" Click="btnModificar_Click" IsEnabled="False"/>
-                    <Button x:Name="btnGenerarJson" Content="Generar JSON" HorizontalAlignment="Left" Margin="621,316,0,0" VerticalAlignment="Top" Click="btnGenerarJson_Click"/>
-                    <TextBox x:Name="txtJson" HorizontalAlignment="Left" Margin="437,341,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="478" RenderTransformOrigin="0.5,0.5" Height="40">
-                        <TextBox.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform AngleY="0"/>
-                                <RotateTransform/>
-                                <TranslateTransform Y="0"/>
-                            </TransformGroup>
-                        </TextBox.RenderTransform>
-                    </TextBox>
+                    <Button x:Name="btnCrear" Content="Generar txt" HorizontalAlignment="Left" Margin="228,326,0,0" VerticalAlignment="Top" Click="GenerarTxt"/>
+                    <Button x:Name="btnDefault" Content="to JSON" HorizontalAlignment="Left" Margin="792,49,0,0" VerticalAlignment="Top" Width="91" Click="btnDefault_Click"/>
+                    <Button x:Name="btnAceptarModificacion" Content="Confirmar Cambios" HorizontalAlignment="Left" Margin="88,326,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+                    <Button x:Name="btnModificar_Cliente" Content="Modificar" HorizontalAlignment="Left" Margin="522,316,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+                    <Button x:Name="btnGenerarPDF" Content="Generar PDF" HorizontalAlignment="Left" Margin="318,326,0,0" VerticalAlignment="Top" Click="GenerarPDF"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tcProvincias" Header="Provincias">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox x:Name="lbAlicante" Margin="543,53,218,83" SelectionChanged="lb_SelectionChanged"/>
-                    <ListBox x:Name="lbValencia" Margin="300,53,466,83" SelectionChanged="lb_SelectionChanged"/>
-                    <ListBox x:Name="lbCastellon" Margin="51,53,701,83" SelectionChanged="lb_SelectionChanged"/>
+                    <ListBox x:Name="lbAlicante" Margin="543,53,218,83"/>
+                    <ListBox x:Name="lbValencia" Margin="300,53,466,83"/>
+                    <ListBox x:Name="lbCastellon" Margin="51,53,701,83"/>
                     <Label Content="Castellon" HorizontalAlignment="Left" Margin="51,27,0,0" VerticalAlignment="Top"/>
                     <Label Content="Valencia" HorizontalAlignment="Left" Margin="300,27,0,0" VerticalAlignment="Top"/>
                     <Label Content="Alicante" HorizontalAlignment="Left" Margin="543,27,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="btnGenerarProvinciastxt" Content="Generar Provincias.txt" HorizontalAlignment="Left" Margin="51,347,0,0" VerticalAlignment="Top" Click="btnGenerarProvinciastxt_Click" Width="136"/>
-                    <Button x:Name="btnModificarP" Content="Modificar" HorizontalAlignment="Left" Margin="210,347,0,0" VerticalAlignment="Top" Click="btnModificar_Click" IsEnabled="False" Width="69"/>
-                    <Button x:Name="btnEliminar_Provincia" Content="Eliminar" HorizontalAlignment="Left" Margin="300,347,0,0" VerticalAlignment="Top" Click="btn_Eliminar_Click" IsEnabled="False" Width="73"/>
+                    <Button x:Name="btnGenerarProvinciastxt" Content="Generar Provincias.txt" HorizontalAlignment="Left" Margin="51,347,0,0" VerticalAlignment="Top" Width="136"/>
+                    <Button x:Name="btnModificarP" Content="Modificar" HorizontalAlignment="Left" Margin="210,347,0,0" VerticalAlignment="Top" IsEnabled="False" Width="69"/>
+                    <Button x:Name="btnEliminar_Provincia" Content="Eliminar" HorizontalAlignment="Left" Margin="300,347,0,0" VerticalAlignment="Top" IsEnabled="False" Width="73"/>
                     <TextBox x:Name="txtNombrePro" MaxLength="32" HorizontalAlignment="Left" Margin="766,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <TextBox x:Name="txtApellidoPro" MaxLength="32" HorizontalAlignment="Left" Margin="766,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <ComboBox x:Name="cbProvinciaPro" HorizontalAlignment="Left" Margin="766,232,0,0" VerticalAlignment="Top" Width="120">
@@ -61,8 +51,8 @@
                     <Label Content="Nombre*" HorizontalAlignment="Left" Margin="766,76,0,0" VerticalAlignment="Top" Width="88"/>
                     <Label Content="Apellido*" HorizontalAlignment="Left" Margin="766,144,0,0" VerticalAlignment="Top"/>
                     <Label Content="Provincia*" HorizontalAlignment="Left" Margin="766,206,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="btnCrear1" Content="Crear" HorizontalAlignment="Left" Margin="766,289,0,0" VerticalAlignment="Top" Width="53" Click="btn_CrearCliente_Click"/>
-                    <Button x:Name="btnConfirmar_Pro" Content="Confirmar cambios" HorizontalAlignment="Left" Margin="766,332,0,0" VerticalAlignment="Top" IsEnabled="False" Click="btn_AceptarCambios_Click" Height="25" Width="120"/>
+                    <Button x:Name="btnCrear1" Content="Crear" HorizontalAlignment="Left" Margin="766,289,0,0" VerticalAlignment="Top" Width="53"/>
+                    <Button x:Name="btnConfirmar_Pro" Content="Confirmar cambios" HorizontalAlignment="Left" Margin="766,332,0,0" VerticalAlignment="Top" IsEnabled="False" Height="25" Width="120"/>
                 </Grid>
             </TabItem>
         </TabControl>

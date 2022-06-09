@@ -511,5 +511,12 @@ namespace practica5_Jose_Poveda_DAM1
                 else MessageBox.Show("Rellena los campos");
             }
         }
+
+        private void btnGenerarJson_Click(object sender, RoutedEventArgs e)
+        {           
+            string json = clientes[lbClientes.SelectedIndex].ToJson();
+
+            txtJson.Text = json;
+        }
     }
 }
